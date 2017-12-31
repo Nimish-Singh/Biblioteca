@@ -9,7 +9,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BooksTest {
   private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -31,9 +31,7 @@ class BooksTest {
     bookList.add(aBook);
     Books books = new Books(bookList);
 
-    books.show();
-
-    assertEquals("Harry Potter J.K.Rowling 2001\n", outContent.toString());
+    assertEquals(String.format("%-40s%-40s%-40s", "Harry Potter", "J.K.Rowling", "2001"), books.show());
   }
 
   @Test
@@ -45,8 +43,6 @@ class BooksTest {
     bookList.add(anotherBook);
     Books books = new Books(bookList);
 
-    books.show();
-
-    assertEquals("Harry Potter J.K.Rowling 2001\nSteve Jobs Walter Isaacson 2007\n", outContent.toString());
+    assertEquals(String.format("%-40s%-40s%-40s\n%-40s%-40s%-40s", "Harry Potter", "J.K.Rowling", "2001", "Steve Jobs", "Walter Isaacson", "2007"), books.show());
   }
 }

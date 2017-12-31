@@ -2,6 +2,7 @@ package com.pathashala;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //Represents a collection of books
 public class Books {
@@ -19,7 +20,7 @@ public class Books {
     this.books = books;
   }
 
-  void show() {
-    books.forEach(System.out::println);
+  String show() {
+    return books.stream().map(Object::toString).collect(Collectors.joining("\n"));
   }
 }
