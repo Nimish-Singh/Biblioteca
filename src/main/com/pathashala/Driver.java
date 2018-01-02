@@ -1,26 +1,14 @@
 package com.pathashala;
 
-import java.util.Scanner;
+import com.inputOutput.Input;
+import com.inputOutput.Output;
 
+//Represents the starting point to run the application
 public class Driver {
-  static Scanner sc = new Scanner(System.in);
 
   public static void main(String[] args) {
     Books books = new Books();
-    Biblioteca biblioteca = new Biblioteca(books);
-    welcomeUser(biblioteca);
-    displayUserMenu(biblioteca);
-  }
-
-  private static void displayUserMenu(Biblioteca biblioteca) {
-    do {
-      System.out.println(biblioteca.showMenu());
-      int userChoice = sc.nextInt();
-      System.out.println(biblioteca.executeUserChoice(userChoice));
-    } while (true);
-  }
-
-  private static void welcomeUser(Biblioteca biblioteca) {
-    System.out.println(biblioteca.welcomeUser());
+    Biblioteca biblioteca = new Biblioteca(books, Output.CONSOLE, Input.CONSOLE);
+    biblioteca.run();
   }
 }

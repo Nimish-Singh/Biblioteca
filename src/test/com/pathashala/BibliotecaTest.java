@@ -1,42 +1,54 @@
 package com.pathashala;
 
+import com.inputOutput.Input;
+import com.inputOutput.Output;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.pathashala.Biblioteca.MENU;
-import static com.pathashala.Biblioteca.SELECT_A_VALID_OPTION;
-import static com.pathashala.Biblioteca.WELCOME_MESSAGE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static com.pathashala.Biblioteca.*;
+import static org.mockito.Mockito.*;
 
 class BibliotecaTest {
-  @Test
-  void expectCustomerToSeeWelcomeMessageOnStartingApplication() {
-    Books books = new Books();
-    Biblioteca biblioteca = new Biblioteca(books);
-    assertEquals(WELCOME_MESSAGE, biblioteca.welcomeUser());
+  private Books books;
+  private Input input;
+  private Output output;
+  private Biblioteca biblioteca;
+
+  @BeforeEach
+  void setUp() {
+    books = new Books();
+    input = mock(Input.class);
+    output = mock(Output.class);
+    biblioteca = new Biblioteca(books, output, input);
   }
 
   @Test
-  void expectCustomerToSeeMenu() {
-    Books books = new Books();
-    Biblioteca biblioteca = new Biblioteca(books);
-    assertEquals(MENU, biblioteca.showMenu());
+  void expectCustomerToSeeWelcomeMessageOnStartingApplication() {
+    when(input.read()).thenReturn("2");
+    biblioteca.run();
+    verify(output).print(WELCOME_MESSAGE);
+  }
+
+  @Test
+  void expectCustomerToSeeMenuAfterWelcomeMessage() {
+    when(input.read()).thenReturn("2");
+    biblioteca.run();
+    verify(output).print(WELCOME_MESSAGE);
+    verify(output).print(MENU);
   }
 
   @Test
   void expectCustomerToSeeListOfBooksOnChoosingOption1() {
-    Books books = mock(Books.class);
-    Biblioteca biblioteca = new Biblioteca(books);
-    biblioteca.executeUserChoice(1);
-    verify(books).show();
+    when(input.read()).thenReturn("1").thenReturn("2");
+    biblioteca.run();
+    verify(output).print(BOOK_LIST_HEADER);
+    verify(output).print(books.stringRepresentationForTabularForm());
   }
 
   @Test
-  void expectCustomerToBeNotifiedOnSelectingAnInvalidChoice() {
-    Books books = mock(Books.class);
-    Biblioteca biblioteca = new Biblioteca(books);
-    biblioteca.executeUserChoice(4);
-    assertEquals(SELECT_A_VALID_OPTION, biblioteca.executeUserChoice(4));
+  void expectCustomerToBeInformedOnSelectingAnInvalidChoice() {
+    when(input.read()).thenReturn("5").thenReturn("2");
+    biblioteca.run();
+    verify(output).print(SELECT_A_VALID_OPTION);
   }
 }

@@ -20,7 +20,7 @@ public class Books {
     this.books = books;
   }
 
-  String show() {
+  String stringRepresentationForTabularForm() {
     return books.stream().map(Object::toString).collect(Collectors.joining("\n"));
   }
 }

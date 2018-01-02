@@ -31,7 +31,7 @@ class BooksTest {
     bookList.add(aBook);
     Books books = new Books(bookList);
 
-    assertEquals(String.format("%-40s%-40s%-40s", "Harry Potter", "J.K.Rowling", "2001"), books.show());
+    assertEquals(String.format("%-40s%-40s%-40s", "Harry Potter", "J.K.Rowling", "2001"), books.stringRepresentationForTabularForm());
   }
 
   @Test
@@ -43,6 +43,6 @@ class BooksTest {
     bookList.add(anotherBook);
     Books books = new Books(bookList);
 
-    assertEquals(String.format("%-40s%-40s%-40s\n%-40s%-40s%-40s", "Harry Potter", "J.K.Rowling", "2001", "Steve Jobs", "Walter Isaacson", "2007"), books.show());
+    assertEquals(String.format("%-40s%-40s%-40s\n%-40s%-40s%-40s", "Harry Potter", "J.K.Rowling", "2001", "Steve Jobs", "Walter Isaacson", "2007"), books.stringRepresentationForTabularForm());
   }
 }
