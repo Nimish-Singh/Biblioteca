@@ -28,11 +28,21 @@ public class Library {
   }
 
   Optional<Book> checkOut(String bookName) {
-    Optional<Book> checkedOutBook= availableBooks.stream().filter(book -> book.hasSameName(bookName)).findFirst();
-    if(checkedOutBook.isPresent()){
+    Optional<Book> checkedOutBook = availableBooks.stream().filter(book -> book.hasSameName(bookName)).findFirst();
+    if (checkedOutBook.isPresent()) {
       availableBooks.remove(checkedOutBook.get());
       checkedOutBooks.add(checkedOutBook.get());
     }
     return checkedOutBook;
+  }
+
+  Optional<String> returnBook(String bookName) {
+    Optional<Book> returnedBook = checkedOutBooks.stream().filter(book -> book.hasSameName(bookName)).findFirst();
+    if (returnedBook.isPresent()) {
+      checkedOutBooks.remove(returnedBook.get());
+      availableBooks.add(returnedBook.get());
+      return Optional.empty();
+    }
+    return Optional.of(bookName);
   }
 }

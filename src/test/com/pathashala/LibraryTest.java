@@ -42,4 +42,17 @@ class LibraryTest {
     Library library = new Library();
     assertFalse(library.checkOut("Alice in wonderland").isPresent());
   }
+
+  @Test
+  void expectBookToBeReturnedIfItBelongsToTheLibrary() {
+    Library library = new Library();
+    library.checkOut("Harry Potter");
+    assertFalse(library.returnBook("Harry Potter").isPresent());
+  }
+
+  @Test
+  void expectBookNotToBeReturnedIfItDoesNotBelongToTheLibrary() {
+    Library library = new Library();
+    assertTrue(library.returnBook("Alice in wonderland").isPresent());
+  }
 }

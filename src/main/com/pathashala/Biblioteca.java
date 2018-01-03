@@ -7,14 +7,18 @@ import com.inputOutput.Output;
 public class Biblioteca {
   static final String WELCOME_MESSAGE = "Welcome to Biblioteca";
   static final String MENU = "\nPlease select one of the following choices\n" +
-          "1.List Library\n" +
-          "2.Checkout\n" +
-          "3.Exit";
+          "1.List Books\n" +
+          "2.Checkout Book\n" +
+          "3.Return Book\n"+
+          "4.Exit";
   static final String SELECT_A_VALID_OPTION = "Select a valid option!";
   static final String BOOK_LIST_HEADER = String.format("%-40s%-40s%-40s\n", "Book", "Author", "Year published");
   static final String UNSUCCESSFUL_CHECKOUT_MESSAGE = "The book is not available";
   static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the book";
   static final String ENTER_NAME_OF_BOOK_TO_BE_CHECKED_OUT = "Enter name of book to be checked out";
+  static final String NOT_A_VALID_BOOK_TO_RETURN_MESSAGE = "That is not a valid book to return";
+  static final String SUCCESSFUL_BOOK_RETURN_MESSAGE = "Thank you for returning the book.";
+  static final String ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED = "Enter name of the book to be returned";
 
   private final Library library;
   private final Output output;
@@ -37,7 +41,7 @@ public class Biblioteca {
       showMenu();
       userChoice = Integer.parseInt(input.read());
       executeUserChoice(userChoice);
-    } while (userChoice != 3);
+    } while (userChoice != 4);
   }
 
   private void welcomeUser() {
@@ -62,10 +66,24 @@ public class Biblioteca {
       checkout();
       return;
     }
-    if (choice == 3) {
+    if(choice==3){
+      returnBook();
+      return;
+    }
+    if (choice == 4) {
       return;
     }
     output.print(SELECT_A_VALID_OPTION);
+  }
+
+  private void returnBook() {
+    output.print(ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED);
+    String bookName = input.read();
+    if (!library.returnBook(bookName).isPresent()) {
+      output.print(SUCCESSFUL_BOOK_RETURN_MESSAGE);
+      return;
+    }
+    output.print(NOT_A_VALID_BOOK_TO_RETURN_MESSAGE);
   }
 
   private void checkout() {
