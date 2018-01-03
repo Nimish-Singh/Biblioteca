@@ -12,6 +12,10 @@ public class Book {
     this.yearPublished = yearPublished;
   }
 
+  boolean hasSameName(String name){
+    return this.name.equalsIgnoreCase(name);
+  }
+
   @Override
   public String toString() {
     return String.format("%-40s%-40s%-40s", name, author, yearPublished);

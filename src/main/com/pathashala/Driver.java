@@ -7,8 +7,8 @@ import com.inputOutput.Output;
 public class Driver {
 
   public static void main(String[] args) {
-    Books books = new Books();
-    Biblioteca biblioteca = new Biblioteca(books, Output.CONSOLE, Input.CONSOLE);
+    Library library = new Library();
+    Biblioteca biblioteca = new Biblioteca(library, Output.CONSOLE, Input.CONSOLE);
     biblioteca.run();
   }
 }
