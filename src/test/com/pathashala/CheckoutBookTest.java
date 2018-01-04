@@ -2,8 +2,13 @@ package com.pathashala;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;
+import com.libraryMenuOperations.CheckoutBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.pathashala.Biblioteca.*;
 import static org.mockito.Mockito.*;
@@ -12,10 +17,13 @@ class CheckoutBookTest {
   private Input input;
   private Output output;
   private CheckoutBook checkoutBook;
+  private List<Book> books;
+  private Library library;
 
   @BeforeEach
   void setUp() {
-    Library library = new Library();
+    books = new ArrayList<>(Arrays.asList(new Book("Harry Potter", "J.K.Rowling", 2001)));
+    library = new Library(books);
     input = mock(Input.class);
     output = mock(Output.class);
     checkoutBook = new CheckoutBook(library, output, input);

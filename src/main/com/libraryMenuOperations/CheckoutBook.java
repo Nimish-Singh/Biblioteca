@@ -1,7 +1,8 @@
-package com.pathashala;
+package com.libraryMenuOperations;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;
+import com.pathashala.Library;
 
 import static com.pathashala.Biblioteca.ENTER_NAME_OF_BOOK_TO_BE_CHECKED_OUT;
 import static com.pathashala.Biblioteca.SUCCESSFUL_CHECKOUT_MESSAGE;
@@ -13,7 +14,7 @@ public class CheckoutBook implements LibraryMenuOption {
   private final Output output;
   private final Input input;
 
-  CheckoutBook(Library library, Output output, Input input) {
+  public CheckoutBook(Library library, Output output, Input input) {
     this.library = library;
     this.output = output;
     this.input = input;

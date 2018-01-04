@@ -10,25 +10,16 @@ public class Library {
   private List<Book> availableBooks;
   private List<Book> checkedOutBooks;
 
-  Library() {
-    List<Book> list = new ArrayList<>();
-    list.add(new Book("Harry Potter", "J.K.Rowling", 2001));
-    list.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
-    list.add(new Book("Outliers", "William Gladwell", 2010));
-    this.availableBooks = list;
-    this.checkedOutBooks = new ArrayList<>();
-  }
-
   Library(List<Book> availableBooks) {
     this.availableBooks = availableBooks;
     this.checkedOutBooks = new ArrayList<>();
   }
 
-  String stringRepresentationForTabularForm() {
+  public String stringRepresentationForTabularForm() {
     return availableBooks.stream().map(Book::tableRepresentationFormatting).collect(Collectors.joining("\n"));
   }
 
-  Optional<Book> checkOut(String bookName) {
+  public Optional<Book> checkOut(String bookName) {
     Optional<Book> checkedOutBook = availableBooks.stream().filter(book -> book.hasSameName(bookName)).findFirst();
     if (checkedOutBook.isPresent()) {
       availableBooks.remove(checkedOutBook.get());
@@ -37,7 +28,7 @@ public class Library {
     return checkedOutBook;
   }
 
-  Optional<String> returnBook(String bookName) {
+  public Optional<String> returnBook(String bookName) {
     Optional<Book> returnedBook = checkedOutBooks.stream().filter(book -> book.hasSameName(bookName)).findFirst();
     if (returnedBook.isPresent()) {
       checkedOutBooks.remove(returnedBook.get());

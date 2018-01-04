@@ -1,8 +1,12 @@
 package com.pathashala;
 
 import com.inputOutput.Output;
+import com.libraryMenuOperations.ListBooks;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.pathashala.Biblioteca.BOOK_LIST_HEADER;
 import static org.mockito.Mockito.mock;
@@ -15,7 +19,12 @@ class ListBooksTest {
 
   @BeforeEach
   void setUp() {
-    library = new Library();
+    Book aBook = new Book("Harry Potter", "J.K.Rowling", 2001);
+    Book anotherBook = new Book("Outliers", "William Gladwell", 2005);
+    List<Book> bookList = new ArrayList<>();
+    bookList.add(aBook);
+    bookList.add(anotherBook);
+    library = new Library(bookList);
     output = mock(Output.class);
     listBooks = new ListBooks(library, output);
   }

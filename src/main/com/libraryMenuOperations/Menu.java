@@ -1,7 +1,8 @@
-package com.pathashala;
+package com.libraryMenuOperations;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;
+import com.pathashala.Library;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ public class Menu {
   private final Map<Integer, LibraryMenuOption> commands;
   private final LibraryMenuOption invalidOption;
 
-  Menu(Library library, Output output, Input input) {
+  public Menu(Library library, Output output, Input input) {
     invalidOption = new InvalidOption(output);
     commands = new HashMap<>();
     commands.put(1,new ListBooks(library, output));
@@ -20,7 +21,7 @@ public class Menu {
     commands.put(4,new Quit(output));
   }
 
-  void execute(Integer option){
+  public void execute(Integer option){
     commands.getOrDefault(option, invalidOption).execute();
   }
 }

@@ -27,7 +27,7 @@ class LibraryTest {
     bookList.add(aBook);
     Library library = new Library(bookList);
 
-    assertEquals(String.format("%-40s%-40s%-40s", "Harry Potter", "J.K.Rowling", "2001"), library.stringRepresentationForTabularForm());
+    assertEquals(String.format("%-170s%-50s%-40s", "Harry Potter", "J.K.Rowling", "2001"), library.stringRepresentationForTabularForm());
   }
 
   @Test
@@ -39,7 +39,7 @@ class LibraryTest {
     bookList.add(anotherBook);
     Library library = new Library(bookList);
 
-    assertEquals(String.format("%-40s%-40s%-40s\n%-40s%-40s%-40s", "Harry Potter", "J.K.Rowling", "2001", "Steve Jobs", "Walter Isaacson", "2007"), library.stringRepresentationForTabularForm());
+    assertEquals(String.format("%-170s%-50s%-40s\n%-170s%-50s%-40s", "Harry Potter", "J.K.Rowling", "2001", "Steve Jobs", "Walter Isaacson", "2007"), library.stringRepresentationForTabularForm());
   }
 
   @Test

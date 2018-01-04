@@ -1,4 +1,4 @@
-package com.pathashala;
+package com.libraryMenuOperations;
 
 import com.inputOutput.Output;
 
@@ -8,7 +8,7 @@ import static com.pathashala.Biblioteca.SELECT_A_VALID_OPTION;
 public class InvalidOption implements LibraryMenuOption {
   private final Output output;
 
-  InvalidOption(Output output) {
+  public InvalidOption(Output output) {
     this.output = output;
   }
 

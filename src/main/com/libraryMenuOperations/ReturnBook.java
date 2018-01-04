@@ -1,7 +1,8 @@
-package com.pathashala;
+package com.libraryMenuOperations;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;
+import com.pathashala.Library;
 
 import static com.pathashala.Biblioteca.ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED;
 import static com.pathashala.Biblioteca.NOT_A_VALID_BOOK_TO_RETURN_MESSAGE;
@@ -13,7 +14,7 @@ public class ReturnBook implements LibraryMenuOption {
   private final Output output;
   private final Input input;
 
-  ReturnBook(Library library, Output output, Input input) {
+  public ReturnBook(Library library, Output output, Input input) {
     this.library = library;
     this.output = output;
     this.input = input;

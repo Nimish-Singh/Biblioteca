@@ -5,6 +5,9 @@ import com.inputOutput.Output;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.pathashala.Biblioteca.*;
 import static org.mockito.Mockito.*;
 
@@ -16,7 +19,11 @@ class BibliotecaTest {
 
   @BeforeEach
   void setUp() {
-    library = new Library();
+    List<Book> books= new ArrayList<>();
+    books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
+    books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
+    books.add(new Book("Outliers", "William Gladwell", 2010));
+    library = new Library(books);
     input = mock(Input.class);
     output = mock(Output.class);
     biblioteca = new Biblioteca(library, output, input);
@@ -35,52 +42,5 @@ class BibliotecaTest {
     biblioteca.run();
     verify(output).print(WELCOME_MESSAGE);
     verify(output).print(MENU);
-  }
-
-  @Test
-  void expectCustomerToSeeListOfBooksOnChoosingOption1() {
-    when(input.read()).thenReturn("1").thenReturn("4");
-    biblioteca.run();
-    verify(output).print(BOOK_LIST_HEADER);
-    verify(output).print(library.stringRepresentationForTabularForm());
-  }
-
-  @Test
-  void expectCustomerToBeInformedOnChoosingAnInvalidOption() {
-    when(input.read()).thenReturn("7").thenReturn("4");
-    biblioteca.run();
-    verify(output).print(SELECT_A_VALID_OPTION);
-  }
-
-  @Test
-  void expectCustomerToBeAbleToCheckoutAvailableBookOnChoosingOption2() {
-    when(input.read()).thenReturn("2").thenReturn("Harry Potter").thenReturn("4");
-    biblioteca.run();
-    verify(output).print(ENTER_NAME_OF_BOOK_TO_BE_CHECKED_OUT);
-    verify(output).print(SUCCESSFUL_CHECKOUT_MESSAGE);
-  }
-
-  @Test
-  void expectCustomerNotToBeAbleToCheckoutUnavailableBookOnChoosingOption2() {
-    when(input.read()).thenReturn("2").thenReturn("Alice in Wonderland").thenReturn("4");
-    biblioteca.run();
-    verify(output).print(ENTER_NAME_OF_BOOK_TO_BE_CHECKED_OUT);
-    verify(output).print(UNSUCCESSFUL_CHECKOUT_MESSAGE);
-  }
-
-  @Test
-  void expectCustomerToBeAbleToReturnBookBelongingToTheLibraryOnChoosingOption3() {
-    when(input.read()).thenReturn("2").thenReturn("Harry Potter").thenReturn("3").thenReturn("Harry Potter").thenReturn("4");
-    biblioteca.run();
-    verify(output).print(ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED);
-    verify(output).print(SUCCESSFUL_BOOK_RETURN_MESSAGE);
-  }
-
-  @Test
-  void expectCustomerNotToBeAbleToCheckoutUnavailableBookOnChoosidsfngOption2() {
-    when(input.read()).thenReturn("3").thenReturn("Alice in Wonderland").thenReturn("4");
-    biblioteca.run();
-    verify(output).print(ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED);
-    verify(output).print(NOT_A_VALID_BOOK_TO_RETURN_MESSAGE);
   }
 }

@@ -2,6 +2,7 @@ package com.pathashala;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;
+import com.libraryMenuOperations.Menu;
 
 //Represents a library management system
 public class Biblioteca {
@@ -11,15 +12,15 @@ public class Biblioteca {
           "2.CheckoutBook Book\n" +
           "3.Return Book\n" +
           "4.Exit";
-  static final String SELECT_A_VALID_OPTION = "Select a valid option!";
-  static final String BOOK_LIST_HEADER = String.format("%-40s%-40s%-40s\n", "Book", "Author", "Year published");
-  static final String UNSUCCESSFUL_CHECKOUT_MESSAGE = "The book is not available";
-  static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the book";
-  static final String ENTER_NAME_OF_BOOK_TO_BE_CHECKED_OUT = "Enter name of book to be checked out";
-  static final String NOT_A_VALID_BOOK_TO_RETURN_MESSAGE = "That is not a valid book to return";
-  static final String SUCCESSFUL_BOOK_RETURN_MESSAGE = "Thank you for returning the book.";
-  static final String ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED = "Enter name of the book to be returned";
-  static final String GOODBYE_MESSAGE = "Goodbye! See you again!";
+  public static final String SELECT_A_VALID_OPTION = "Select a valid option!";
+  public static final String BOOK_LIST_HEADER = String.format("%-170s%-50s%-40s\n", "Book", "Author", "Year published");
+  public static final String UNSUCCESSFUL_CHECKOUT_MESSAGE = "The book is not available";
+  public static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the book";
+  public static final String ENTER_NAME_OF_BOOK_TO_BE_CHECKED_OUT = "Enter name of book to be checked out";
+  public static final String NOT_A_VALID_BOOK_TO_RETURN_MESSAGE = "That is not a valid book to return";
+  public static final String SUCCESSFUL_BOOK_RETURN_MESSAGE = "Thank you for returning the book.";
+  public static final String ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED = "Enter name of the book to be returned";
+  public static final String GOODBYE_MESSAGE = "Goodbye! See you again!";
 
   private final Menu menu;
   private final Output output;

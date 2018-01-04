@@ -1,6 +1,7 @@
-package com.pathashala;
+package com.libraryMenuOperations;
 
 import com.inputOutput.Output;
+import com.pathashala.Library;
 
 import static com.pathashala.Biblioteca.BOOK_LIST_HEADER;
 
@@ -9,7 +10,7 @@ public class ListBooks implements LibraryMenuOption {
   private final Library library;
   private final Output output;
 
-  ListBooks(Library library, Output output) {
+  public ListBooks(Library library, Output output) {
     this.library = library;
     this.output = output;
   }
