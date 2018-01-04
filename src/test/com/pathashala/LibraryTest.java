@@ -1,5 +1,6 @@
 package com.pathashala;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,6 +9,17 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
+  private Library library;
+
+  @BeforeEach
+  void setUp() {
+    List <Book> books= new ArrayList<>();
+    books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
+    books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
+    books.add(new Book("Outliers", "William Gladwell", 2010));
+    library = new Library(books);
+  }
+
   @Test
   void expectAListedBookToBeShown() {
     Book aBook = new Book("Harry Potter", "J.K.Rowling", 2001);
@@ -32,27 +44,23 @@ class LibraryTest {
 
   @Test
   void expectBookToBeCheckedOutIfItIsAvailable() {
-    Library library = new Library();
     assertTrue(library.checkOut("Harry Potter").isPresent());
     assertFalse(library.checkOut("Harry Potter").isPresent());
   }
 
   @Test
   void expectBookNotToBeCheckedOutIfItIsUnavailable() {
-    Library library = new Library();
     assertFalse(library.checkOut("Alice in wonderland").isPresent());
   }
 
   @Test
   void expectBookToBeReturnedIfItBelongsToTheLibrary() {
-    Library library = new Library();
     library.checkOut("Harry Potter");
     assertFalse(library.returnBook("Harry Potter").isPresent());
   }
 
   @Test
   void expectBookNotToBeReturnedIfItDoesNotBelongToTheLibrary() {
-    Library library = new Library();
     assertTrue(library.returnBook("Alice in wonderland").isPresent());
   }
 }

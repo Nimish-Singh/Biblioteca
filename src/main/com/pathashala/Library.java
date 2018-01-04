@@ -21,10 +21,11 @@ public class Library {
 
   Library(List<Book> availableBooks) {
     this.availableBooks = availableBooks;
+    this.checkedOutBooks = new ArrayList<>();
   }
 
   String stringRepresentationForTabularForm() {
-    return availableBooks.stream().map(Object::toString).collect(Collectors.joining("\n"));
+    return availableBooks.stream().map(Book::tableRepresentationFormatting).collect(Collectors.joining("\n"));
   }
 
   Optional<Book> checkOut(String bookName) {

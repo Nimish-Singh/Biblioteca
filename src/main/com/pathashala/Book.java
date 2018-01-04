@@ -16,8 +16,7 @@ public class Book {
     return this.name.equalsIgnoreCase(name);
   }
 
-  @Override
-  public String toString() {
+  public String tableRepresentationFormatting() {
     return String.format("%-40s%-40s%-40s", name, author, yearPublished);
   }
 }
