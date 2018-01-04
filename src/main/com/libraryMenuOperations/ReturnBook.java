@@ -1,8 +1,8 @@
 package com.libraryMenuOperations;
 
+import com.core.Library;
 import com.inputOutput.Input;
 import com.inputOutput.Output;
-import com.pathashala.Library;
 
 //Represents the option for returning a book to the library
 public class ReturnBook implements LibraryMenuOption {

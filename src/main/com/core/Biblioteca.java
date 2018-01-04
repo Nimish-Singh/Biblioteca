@@ -1,4 +1,4 @@
-package com.pathashala;
+package com.core;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;

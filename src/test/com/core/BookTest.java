@@ -1,4 +1,4 @@
-package com.pathashala;
+package com.core;
 
 import org.junit.jupiter.api.Test;
 

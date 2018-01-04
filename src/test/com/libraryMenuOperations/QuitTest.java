@@ -1,7 +1,6 @@
-package com.pathashala;
+package com.libraryMenuOperations;
 
 import com.inputOutput.Output;
-import com.libraryMenuOperations.Quit;
 import org.junit.jupiter.api.Test;
 
 import static com.libraryMenuOperations.Quit.GOODBYE_MESSAGE;

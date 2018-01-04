@@ -1,7 +1,7 @@
 package com.libraryMenuOperations;
 
+import com.core.Library;
 import com.inputOutput.Output;
-import com.pathashala.Library;
 
 //Represents the option for listing all the available books in the library
 public class ListBooks implements LibraryMenuOption {

@@ -1,4 +1,4 @@
-package com.pathashala;
+package com.core;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;
@@ -9,8 +9,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.core.Biblioteca.MENU;
+import static com.core.Biblioteca.WELCOME_MESSAGE;
 import static com.libraryMenuOperations.Menu.QUIT_OPTION_NUMBER;
-import static com.pathashala.Biblioteca.*;
 import static org.mockito.Mockito.*;
 
 class BibliotecaTest {
@@ -22,7 +23,7 @@ class BibliotecaTest {
 
   @BeforeEach
   void setUp() {
-    List<Book> books= new ArrayList<>();
+    List<Book> books = new ArrayList<>();
     books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
     books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
     books.add(new Book("Outliers", "William Gladwell", 2010));

@@ -1,7 +1,7 @@
-package com.pathashala;
+package com.core;
 
 //Represents a collection of pages held together
-public class Book implements Comparable<Book>{
+public class Book implements Comparable<Book> {
   private final String name;
   private final String author;
   private final int yearPublished;
@@ -12,7 +12,7 @@ public class Book implements Comparable<Book>{
     this.yearPublished = yearPublished;
   }
 
-  boolean hasSameName(String name){
+  boolean hasSameName(String name) {
     return this.name.equalsIgnoreCase(name);
   }
 

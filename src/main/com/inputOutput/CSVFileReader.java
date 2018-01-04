@@ -1,6 +1,6 @@
 package com.inputOutput;
 
-import com.pathashala.Book;
+import com.core.Book;
 
 import java.io.BufferedReader;
 import java.io.File;

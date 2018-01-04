@@ -1,8 +1,9 @@
-package com.pathashala;
+package com.libraryMenuOperations;
 
+import com.core.Book;
+import com.core.Library;
 import com.inputOutput.Input;
 import com.inputOutput.Output;
-import com.libraryMenuOperations.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.libraryMenuOperations.Menu.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
 class MenuTest {
   private Output output;
@@ -21,7 +22,7 @@ class MenuTest {
 
   @BeforeEach
   void setUp() {
-    List<Book> books= new ArrayList<>();
+    List<Book> books = new ArrayList<>();
     books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
     books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
     books.add(new Book("Outliers", "William Gladwell", 2010));

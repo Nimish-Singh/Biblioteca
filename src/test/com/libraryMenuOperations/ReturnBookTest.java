@@ -1,9 +1,9 @@
-package com.pathashala;
+package com.libraryMenuOperations;
 
+import com.core.Book;
+import com.core.Library;
 import com.inputOutput.Input;
 import com.inputOutput.Output;
-import com.libraryMenuOperations.CheckoutBook;
-import com.libraryMenuOperations.ReturnBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ class ReturnBookTest {
 
   @BeforeEach
   void setUp() {
-    List<Book> books= new ArrayList<>();
+    List<Book> books = new ArrayList<>();
     books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
     books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
     books.add(new Book("Outliers", "William Gladwell", 2010));

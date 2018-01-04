@@ -1,4 +1,4 @@
-package com.pathashala;
+package com.core;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ class LibraryTest {
 
   @BeforeEach
   void setUp() {
-    List <Book> books= new ArrayList<>();
+    List<Book> books = new ArrayList<>();
     books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
     books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
     books.add(new Book("Outliers", "William Gladwell", 2010));

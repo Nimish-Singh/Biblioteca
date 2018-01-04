@@ -1,8 +1,8 @@
 package com.libraryMenuOperations;
 
+import com.core.Library;
 import com.inputOutput.Input;
 import com.inputOutput.Output;
-import com.pathashala.Library;
 
 //Represents the option for checking out a book from the library
 public class CheckoutBook implements LibraryMenuOption {

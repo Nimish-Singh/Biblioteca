@@ -1,4 +1,4 @@
-package com.pathashala;
+package com.core;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Library {
   private List<Book> availableBooks;
   private List<Book> checkedOutBooks;
 
-  Library(List<Book> availableBooks) {
+  public Library(List<Book> availableBooks) {
     this.availableBooks = availableBooks;
     this.checkedOutBooks = new ArrayList<>();
   }
