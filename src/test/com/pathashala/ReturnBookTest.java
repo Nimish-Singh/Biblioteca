@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.pathashala.Biblioteca.*;
+import static com.libraryMenuOperations.ReturnBook.*;
 import static org.mockito.Mockito.*;
 
 class ReturnBookTest {

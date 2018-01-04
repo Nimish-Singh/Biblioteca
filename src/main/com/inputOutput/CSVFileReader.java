@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//Represents a comma separated file reader
 public class CSVFileReader {
   List<Book> books;
 
-  public List<Book> readBooksFromFile() {
-    File readFile = new File("/Users/nimishs/Assignments/Biblioteca/src/main/resources/books.csv");
+  public List<Book> readBooksFromFile(String path) {
+    File readFile = new File(path);
     books = new ArrayList<>();
     try {
       BufferedReader reader = new BufferedReader(new FileReader(readFile));

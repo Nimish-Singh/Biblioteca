@@ -4,7 +4,7 @@ import com.inputOutput.Output;
 import com.libraryMenuOperations.Quit;
 import org.junit.jupiter.api.Test;
 
-import static com.pathashala.Biblioteca.GOODBYE_MESSAGE;
+import static com.libraryMenuOperations.Quit.GOODBYE_MESSAGE;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 

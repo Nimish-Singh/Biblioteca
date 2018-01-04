@@ -9,19 +9,25 @@ import java.util.Map;
 
 //Represents a mapping of different library options
 public class Menu {
-  private final Map<Integer, LibraryMenuOption> commands;
+  public static final String LIST_BOOKS_OPTION_NUMBER = "1";
+  public static final String CHECKOUT_BOOK_OPTION_NUMBER = "2";
+  public static final String RETURN_BOOK_OPTION_NUMBER = "3";
+  public static final String QUIT_OPTION_NUMBER = "4";
+  private final Map<String, LibraryMenuOption> commands;
   private final LibraryMenuOption invalidOption;
+  public final LibraryMenuOption quit;
 
   public Menu(Library library, Output output, Input input) {
     invalidOption = new InvalidOption(output);
+    quit = new Quit(output);
     commands = new HashMap<>();
-    commands.put(1,new ListBooks(library, output));
-    commands.put(2,new CheckoutBook(library, output, input));
-    commands.put(3,new ReturnBook(library, output, input));
-    commands.put(4,new Quit(output));
+    commands.put(LIST_BOOKS_OPTION_NUMBER, new ListBooks(library, output));
+    commands.put(CHECKOUT_BOOK_OPTION_NUMBER, new CheckoutBook(library, output, input));
+    commands.put(RETURN_BOOK_OPTION_NUMBER, new ReturnBook(library, output, input));
+    commands.put(QUIT_OPTION_NUMBER, quit);
   }
 
-  public void execute(Integer option){
-    commands.getOrDefault(option, invalidOption).execute();
+  public LibraryMenuOption getOption(String userChoice) {
+    return commands.getOrDefault(userChoice, invalidOption);
   }
 }

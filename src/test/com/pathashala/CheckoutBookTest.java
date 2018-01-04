@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.pathashala.Biblioteca.*;
+import static com.libraryMenuOperations.CheckoutBook.*;
 import static org.mockito.Mockito.*;
 
 class CheckoutBookTest {

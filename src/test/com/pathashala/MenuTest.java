@@ -2,14 +2,15 @@ package com.pathashala;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;
-import com.libraryMenuOperations.Menu;
+import com.libraryMenuOperations.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.pathashala.Biblioteca.*;
+import static com.libraryMenuOperations.Menu.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class MenuTest {
@@ -32,32 +33,26 @@ class MenuTest {
 
   @Test
   void expectListBooksOptionToBeExecutedOnChoosingOption1() {
-    menu.execute(1);
-    verify(output).print(BOOK_LIST_HEADER);
+    assertEquals(ListBooks.class, menu.getOption(LIST_BOOKS_OPTION_NUMBER).getClass());
   }
 
   @Test
   void expectCheckoutBooksOptionToBeExecutedOnChoosingOption2() {
-    menu.execute(2);
-    verify(output).print(ENTER_NAME_OF_BOOK_TO_BE_CHECKED_OUT);
+    assertEquals(CheckoutBook.class, menu.getOption(CHECKOUT_BOOK_OPTION_NUMBER).getClass());
   }
 
   @Test
   void expectReturnBooksOptionToBeExecutedOnChoosingOption3() {
-    when(input.read()).thenReturn("");
-    menu.execute(3);
-    verify(output).print(ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED);
+    assertEquals(ReturnBook.class, menu.getOption(RETURN_BOOK_OPTION_NUMBER).getClass());
   }
 
   @Test
   void expectQuitOptionToBeExecutedOnChoosingOption4() {
-    menu.execute(4);
-    verify(output).print(GOODBYE_MESSAGE);
+    assertEquals(Quit.class, menu.getOption(QUIT_OPTION_NUMBER).getClass());
   }
 
   @Test
   void expectInvalidOptionToBeExecutedOnChoosingAnyOtherOption() {
-    menu.execute(7);
-    verify(output).print(SELECT_A_VALID_OPTION);
+    assertEquals(InvalidOption.class, menu.getOption("G").getClass());
   }
 }

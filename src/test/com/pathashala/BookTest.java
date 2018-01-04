@@ -49,4 +49,32 @@ class BookTest {
     Book anotherBook = new Book("outliers", "William Gladwell", 2010);
     assertTrue(anotherBook.compareTo(book) == 0);
   }
+
+  @Test
+  void expectBooksWithSameDetailsToBeEqual() {
+    Book book = new Book("Outliers", "William Gladwell", 2010);
+    Book anotherBook = new Book("Outliers", "William Gladwell", 2010);
+    assertEquals(book, anotherBook);
+  }
+
+  @Test
+  void expectBooksWithDifferentDetailsToBeUnequal() {
+    Book book = new Book("Outliers", "William Gladwell", 2010);
+    Book anotherBook = new Book("Harry Potter", "J.K.Rowling", 2001);
+    assertNotEquals(book, anotherBook);
+  }
+
+  @Test
+  void expectEqualBooksToHaveEqualHashcodes() {
+    Book book = new Book("Outliers", "William Gladwell", 2010);
+    Book anotherBook = new Book("Outliers", "William Gladwell", 2010);
+    assertEquals(book.hashCode(), anotherBook.hashCode());
+  }
+
+  @Test
+  void expectUnequalBooksToHaveUnequalHashcodes() {
+    Book book = new Book("Outliers", "William Gladwell", 2010);
+    Book anotherBook = new Book("Harry Potter", "J.K.Rowling", 2001);
+    assertNotEquals(book.hashCode(), anotherBook.hashCode());
+  }
 }

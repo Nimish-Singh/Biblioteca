@@ -4,12 +4,12 @@ import com.inputOutput.Input;
 import com.inputOutput.Output;
 import com.pathashala.Library;
 
-import static com.pathashala.Biblioteca.ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED;
-import static com.pathashala.Biblioteca.NOT_A_VALID_BOOK_TO_RETURN_MESSAGE;
-import static com.pathashala.Biblioteca.SUCCESSFUL_BOOK_RETURN_MESSAGE;
-
 //Represents the option for returning a book to the library
 public class ReturnBook implements LibraryMenuOption {
+  public static final String ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED = "Enter name of the book to be returned";
+  public static final String SUCCESSFUL_BOOK_RETURN_MESSAGE = "Thank you for returning the book.";
+  public static final String NOT_A_VALID_BOOK_TO_RETURN_MESSAGE = "That is not a valid book to return";
+
   private final Library library;
   private final Output output;
   private final Input input;

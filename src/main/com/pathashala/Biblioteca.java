@@ -2,6 +2,7 @@ package com.pathashala;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;
+import com.libraryMenuOperations.LibraryMenuOption;
 import com.libraryMenuOperations.Menu;
 
 //Represents a library management system
@@ -11,25 +12,17 @@ public class Biblioteca {
           "1.List Books\n" +
           "2.CheckoutBook Book\n" +
           "3.Return Book\n" +
-          "4.Exit";
-  public static final String SELECT_A_VALID_OPTION = "Select a valid option!";
-  public static final String BOOK_LIST_HEADER = String.format("%-170s%-50s%-40s\n", "Book", "Author", "Year published");
-  public static final String UNSUCCESSFUL_CHECKOUT_MESSAGE = "The book is not available";
-  public static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the book";
-  public static final String ENTER_NAME_OF_BOOK_TO_BE_CHECKED_OUT = "Enter name of book to be checked out";
-  public static final String NOT_A_VALID_BOOK_TO_RETURN_MESSAGE = "That is not a valid book to return";
-  public static final String SUCCESSFUL_BOOK_RETURN_MESSAGE = "Thank you for returning the book.";
-  public static final String ENTER_NAME_OF_THE_BOOK_TO_BE_RETURNED = "Enter name of the book to be returned";
-  public static final String GOODBYE_MESSAGE = "Goodbye! See you again!";
+          "4.Quit";
+  public static final String ASK_KEY_INPUT_TO_CONTINUE = "\nPress any key to continue";
 
   private final Menu menu;
   private final Output output;
   private final Input input;
 
-  Biblioteca(Library library, Output output, Input input) {
+  Biblioteca(Menu menu, Output output, Input input) {
     this.output = output;
     this.input = input;
-    menu = new Menu(library, output, input);
+    this.menu = menu;
   }
 
   void run() {
@@ -37,24 +30,24 @@ public class Biblioteca {
     menu();
   }
 
-  private void menu() {
-    int userChoice;
-    do {
-      showMenu();
-      userChoice = Integer.parseInt(input.read());
-      executeUserChoice(userChoice);
-    } while (userChoice != 4);
-  }
-
   private void welcomeUser() {
     output.print(WELCOME_MESSAGE);
   }
 
-  private void showMenu() {
-    output.print(MENU);
+  private void menu() {
+    String userChoice;
+    LibraryMenuOption userOption;
+    do {
+      showMenu();
+      userChoice = input.read();
+      userOption = menu.getOption(userChoice.toUpperCase());
+      userOption.execute();
+      output.print(ASK_KEY_INPUT_TO_CONTINUE);
+      input.read();
+    } while (userOption != menu.quit);
   }
 
-  private void executeUserChoice(int choice) {
-    menu.execute(choice);
+  private void showMenu() {
+    output.print(MENU);
   }
 }

@@ -5,7 +5,7 @@ import com.libraryMenuOperations.InvalidOption;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.pathashala.Biblioteca.SELECT_A_VALID_OPTION;
+import static com.libraryMenuOperations.InvalidOption.SELECT_A_VALID_OPTION;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 

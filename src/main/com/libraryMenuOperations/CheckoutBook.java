@@ -4,12 +4,12 @@ import com.inputOutput.Input;
 import com.inputOutput.Output;
 import com.pathashala.Library;
 
-import static com.pathashala.Biblioteca.ENTER_NAME_OF_BOOK_TO_BE_CHECKED_OUT;
-import static com.pathashala.Biblioteca.SUCCESSFUL_CHECKOUT_MESSAGE;
-import static com.pathashala.Biblioteca.UNSUCCESSFUL_CHECKOUT_MESSAGE;
-
 //Represents the option for checking out a book from the library
 public class CheckoutBook implements LibraryMenuOption {
+  public static final String ENTER_NAME_OF_BOOK_TO_BE_CHECKED_OUT = "Enter name of book to be checked out";
+  public static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the book";
+  public static final String UNSUCCESSFUL_CHECKOUT_MESSAGE = "The book is not available";
+
   private final Library library;
   private final Output output;
   private final Input input;
