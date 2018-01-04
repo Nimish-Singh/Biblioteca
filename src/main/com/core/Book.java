@@ -16,7 +16,7 @@ public class Book implements Comparable<Book> {
     return this.name.equalsIgnoreCase(name);
   }
 
-  String tableRepresentationFormatting() {
+  public String tableRepresentationFormatting() {
     return String.format("%-170s%-50s%-40s", name, author, yearPublished);
   }
 

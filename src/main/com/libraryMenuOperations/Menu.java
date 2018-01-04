@@ -21,7 +21,7 @@ public class Menu {
     invalidOption = new InvalidOption(output);
     quit = new Quit(output);
     commands = new HashMap<>();
-    commands.put(LIST_BOOKS_OPTION_NUMBER, new ListBooks(library, output));
+    commands.put(LIST_BOOKS_OPTION_NUMBER, new ListBooks(library, output, input));
     commands.put(CHECKOUT_BOOK_OPTION_NUMBER, new CheckoutBook(library, output, input));
     commands.put(RETURN_BOOK_OPTION_NUMBER, new ReturnBook(library, output, input));
     commands.put(QUIT_OPTION_NUMBER, quit);
