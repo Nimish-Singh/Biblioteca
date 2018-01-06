@@ -1,13 +1,13 @@
 package com.core;
 
 public class Movie implements LibraryListable {
-  private final String name;
+  private final String title;
   private final String director;
   private final int year;
   private final String rating;
 
-  public Movie(String name, String director, int year, String rating) {
-    this.name = name;
+  public Movie(String title, String director, int year, String rating) {
+    this.title = title;
     this.director = director;
     this.year = year;
     this.rating = rating;
@@ -15,18 +15,18 @@ public class Movie implements LibraryListable {
 
   @Override
   public boolean hasSameName(String movieName) {
-    return this.name.equalsIgnoreCase(movieName);
+    return this.title.equalsIgnoreCase(movieName);
   }
 
   @Override
   public String tableRepresentationFormatting() {
-    return String.format("%-70s%-40s%-30s%-10s", name, director, year, rating);
+    return String.format("%-70s%-40s%-30s%-10s", title, director, year, rating);
   }
 
   @Override
   public int compareTo(LibraryListable other) {
     Movie otherMovie = (Movie) other;
-    return this.name.compareToIgnoreCase(otherMovie.name);
+    return this.title.compareToIgnoreCase(otherMovie.title);
   }
 
   @Override
@@ -41,7 +41,7 @@ public class Movie implements LibraryListable {
     if (year != otherMovie.year) {
       return false;
     }
-    if (name != null ? !name.equals(otherMovie.name) : otherMovie.name != null) {
+    if (title != null ? !title.equals(otherMovie.title) : otherMovie.title != null) {
       return false;
     }
     if (director != null ? !director.equals(otherMovie.director) : otherMovie.director != null) {
@@ -52,7 +52,7 @@ public class Movie implements LibraryListable {
 
   @Override
   public int hashCode() {
-    int result = name != null ? name.hashCode() : 0;
+    int result = title != null ? title.hashCode() : 0;
     result = 31 * result + (director != null ? director.hashCode() : 0);
     result = 31 * result + year;
     result = 31 * result + (rating != null ? rating.hashCode() : 0);
