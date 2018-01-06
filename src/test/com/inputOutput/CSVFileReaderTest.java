@@ -31,20 +31,20 @@ class CSVFileReaderTest {
     Collections.sort(movieList);
     bookList.addAll(movieList);
     CSVFileReader csvFileReader = new CSVFileReader();
-    assertEquals(bookList, csvFileReader.readFromFile("/Users/nimishs/Assignments/Biblioteca/src/test/resources/books.csv", "/Users/nimishs/Assignments/Biblioteca/src/test/resources/movies.csv", output));
+    assertEquals(bookList, csvFileReader.readFromFile("src/test/resources/books.csv", "src/test/resources/movies.csv", output));
   }
 
   @Test
   void expectMessageToBeShownIfBooksFileCanNotBeRead() {
     CSVFileReader csvFileReader = new CSVFileReader();
-    csvFileReader.readFromFile("/test/resources/books.csv", "/Users/nimishs/Assignments/Biblioteca/src/test/resources/movies.csv", output);
+    csvFileReader.readFromFile("/test/resources/books.csv", "src/test/resources/movies.csv", output);
     verify(output).print(BOOKS_FILE_IO_ERROR);
   }
 
   @Test
   void expectMessageToBeShownIfMoviesFileCanNotBeRead() {
     CSVFileReader csvFileReader = new CSVFileReader();
-    csvFileReader.readFromFile("/Users/nimishs/Assignments/Biblioteca/src/test/resources/books.csv", "test/resources/movies.csv", output);
+    csvFileReader.readFromFile("src/test/resources/books.csv", "test/resources/movies.csv", output);
     verify(output).print(MOVIES_FILE_IO_ERROR);
   }
 }

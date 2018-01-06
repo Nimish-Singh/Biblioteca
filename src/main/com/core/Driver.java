@@ -9,8 +9,8 @@ import com.libraryMenuOperations.Menu;
 public class Driver {
   public static void main(String[] args) {
     CSVFileReader reader = new CSVFileReader();
-    Library library = new Library(reader.readFromFile("/Users/nimishs/Assignments/Biblioteca/src/main/resources/books.csv",
-            "/Users/nimishs/Assignments/Biblioteca/src/main/resources/movies.csv",
+    Library library = new Library(reader.readFromFile("src/main/resources/books.csv",
+            "src/main/resources/movies.csv",
             Output.CONSOLE));
     Menu menu = new Menu(library, Output.CONSOLE, Input.CONSOLE);
     Biblioteca biblioteca = new Biblioteca(menu, Output.CONSOLE, Input.CONSOLE);
