@@ -10,9 +10,10 @@ public class Biblioteca {
   static final String WELCOME_MESSAGE = "Welcome to Biblioteca";
   static final String MENU = "\nPlease select one of the following choices\n" +
           "1.List Books\n" +
-          "2.CheckoutBook Book\n" +
-          "3.Return Book\n" +
-          "4.Quit";
+          "2.List Movies\n" +
+          "3.Checkout Item\n" +
+          "4.Return Item\n" +
+          "0.Quit";
   public static final String ASK_KEY_INPUT_TO_CONTINUE = "\nPress any key to continue";
 
   private final Menu menu;

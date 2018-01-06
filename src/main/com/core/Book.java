@@ -1,7 +1,7 @@
 package com.core;
 
 //Represents a collection of pages held together
-public class Book implements Comparable<Book> {
+public class Book implements LibraryListable {
   private final String name;
   private final String author;
   private final int yearPublished;
@@ -12,10 +12,12 @@ public class Book implements Comparable<Book> {
     this.yearPublished = yearPublished;
   }
 
-  boolean hasSameName(String name) {
+  @Override
+  public boolean hasSameName(String name) {
     return this.name.equalsIgnoreCase(name);
   }
 
+  @Override
   public String tableRepresentationFormatting() {
     return String.format("%-170s%-50s%-40s", name, author, yearPublished);
   }
@@ -47,7 +49,8 @@ public class Book implements Comparable<Book> {
   }
 
   @Override
-  public int compareTo(Book other) {
-    return this.name.compareToIgnoreCase(other.name);
+  public int compareTo(LibraryListable other) {
+    Book otherBook = (Book) other;
+    return this.name.compareToIgnoreCase(otherBook.name);
   }
 }

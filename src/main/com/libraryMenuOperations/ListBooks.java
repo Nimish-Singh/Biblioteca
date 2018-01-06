@@ -1,7 +1,7 @@
 package com.libraryMenuOperations;
 
-import com.core.Book;
 import com.core.Library;
+import com.core.LibraryListable;
 import com.inputOutput.Input;
 import com.inputOutput.Output;
 
@@ -15,6 +15,7 @@ import static com.libraryMenuOperations.Menu.QUIT_OPTION_NUMBER;
 public class ListBooks implements LibraryMenuOption {
   public static final String BOOK_LIST_HEADER = String.format("%-170s%-50s%-40s\n", "Book", "Author", "Year published");
   public static final Integer PAGE_LIMIT = 20;
+  public static final String PAGINATION_CONTINUATION_PROMPT_MESSAGE = "Press any key to continue. Press 0 to get back to main menu";
 
   private final Library library;
   private final Output output;
@@ -29,17 +30,18 @@ public class ListBooks implements LibraryMenuOption {
   @Override
   public void execute() {
     output.print(BOOK_LIST_HEADER);
-    Map<Integer, List<Book>> paginatedBooks = library.paginateBooks(PAGE_LIMIT);
-    Iterator<Map.Entry<Integer, List<Book>>> iterator = paginatedBooks.entrySet().iterator();
+    Map<Integer, List<LibraryListable>> paginatedBooks = library.paginateBooks(PAGE_LIMIT);
+    Iterator<Map.Entry<Integer, List<LibraryListable>>> iterator = paginatedBooks.entrySet().iterator();
     do {
-      Map.Entry<Integer, List<Book>> booksPerPage = iterator.next();
+      Map.Entry<Integer, List<LibraryListable>> booksPerPage = iterator.next();
       output.print(formatListBooks(booksPerPage.getValue()));
+      output.print(PAGINATION_CONTINUATION_PROMPT_MESSAGE);
     } while (!input.read().equalsIgnoreCase(QUIT_OPTION_NUMBER) && iterator.hasNext());
   }
 
-  private String formatListBooks(List<Book> books) {
+  private String formatListBooks(List<LibraryListable> books) {
     StringBuilder output = new StringBuilder();
-    for (Book book : books) {
+    for (LibraryListable book : books) {
       output.append(book.tableRepresentationFormatting()).append('\n');
     }
     return output.toString();

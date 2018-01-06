@@ -1,53 +1,63 @@
 package com.core;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.lang.Math.min;
 import static java.util.stream.Collectors.toMap;
 
-//Represents a place where books can be borrowed from
+//Represents a place where books and movies can be borrowed from
 public class Library {
-  private List<Book> availableBooks;
-  private List<Book> checkedOutBooks;
+  private List<LibraryListable> availableItems;
+  private List<LibraryListable> checkedOutItems;
 
-  public Library(List<Book> availableBooks) {
-    this.availableBooks = availableBooks;
-    this.checkedOutBooks = new ArrayList<>();
+  public Library(List<LibraryListable> items) {
+    this.availableItems = items;
+    this.checkedOutItems = new ArrayList<>();
   }
 
-  public Optional<Book> checkOut(String bookName) {
-    Optional<Book> checkedOutBook = availableBooks.stream().filter(book -> book.hasSameName(bookName)).findFirst();
-    if (checkedOutBook.isPresent()) {
-      availableBooks.remove(checkedOutBook.get());
-      checkedOutBooks.add(checkedOutBook.get());
+  public Optional<LibraryListable> checkOut(String itemName) {
+    Optional<LibraryListable> checkedOutItem = availableItems.stream().filter(item -> item.hasSameName(itemName)).findFirst();
+    if (checkedOutItem.isPresent()) {
+      availableItems.remove(checkedOutItem.get());
+      checkedOutItems.add(checkedOutItem.get());
     }
-    return checkedOutBook;
+    return checkedOutItem;
   }
 
-  public Optional<String> returnBook(String bookName) {
-    Optional<Book> returnedBook = checkedOutBooks.stream().filter(book -> book.hasSameName(bookName)).findFirst();
-    if (returnedBook.isPresent()) {
-      checkedOutBooks.remove(returnedBook.get());
-      availableBooks.add(returnedBook.get());
+  public Optional<String> returnItem(String itemName) {
+    Optional<LibraryListable> returnedItem = checkedOutItems.stream().filter(item -> item.hasSameName(itemName)).findFirst();
+    if (returnedItem.isPresent()) {
+      checkedOutItems.remove(returnedItem.get());
+      availableItems.add(returnedItem.get());
       return Optional.empty();
     }
-    return Optional.of(bookName);
+    return Optional.of(itemName);
   }
 
-  public String stringRepresentationForTabularForm() {
-    return availableBooks.stream().map(Book::tableRepresentationFormatting).collect(Collectors.joining("\n"));
-  }
-
-  public Map<Integer, List<Book>> paginateBooks(int pageSize) {
-    List<Book> books = new ArrayList<>(availableBooks);
-    books.addAll(checkedOutBooks);
-    Collections.sort(books);
+  public Map<Integer, List<LibraryListable>> paginateBooks(int pageSize) {
+    List<LibraryListable> books = new ArrayList<>(availableItems);
+    books.addAll(checkedOutItems);
+    List<LibraryListable> printingBooks = books.stream().filter(book -> book.getClass().equals(Book.class)).collect(Collectors.toList());
 
     return IntStream.iterate(0, i -> i + pageSize)
-            .limit((books.size() + pageSize - 1) / pageSize)
+            .limit((printingBooks.size() + pageSize - 1) / pageSize)
             .boxed()
-            .collect(toMap(i -> i / pageSize, i -> books.subList(i, min(i + pageSize, books.size()))));
+            .collect(toMap(i -> i / pageSize, i -> printingBooks.subList(i, min(i + pageSize, printingBooks.size()))));
+  }
+
+  public Map<Integer, List<LibraryListable>> paginateMovies(int pageSize) {
+    List<LibraryListable> movies = new ArrayList<>(availableItems);
+    movies.addAll(checkedOutItems);
+    List<LibraryListable> printingMovies = movies.stream().filter(movie -> movie.getClass().equals(Movie.class)).collect(Collectors.toList());
+
+    return IntStream.iterate(0, i -> i + pageSize)
+            .limit((printingMovies.size() + pageSize - 1) / pageSize)
+            .boxed()
+            .collect(toMap(i -> i / pageSize, i -> printingMovies.subList(i, min(i + pageSize, printingMovies.size()))));
   }
 }

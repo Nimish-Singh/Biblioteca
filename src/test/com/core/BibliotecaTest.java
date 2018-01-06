@@ -23,7 +23,7 @@ class BibliotecaTest {
 
   @BeforeEach
   void setUp() {
-    List<Book> books = new ArrayList<>();
+    List<LibraryListable> books = new ArrayList<>();
     books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
     books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
     books.add(new Book("Outliers", "William Gladwell", 2010));

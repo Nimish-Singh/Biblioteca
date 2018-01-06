@@ -2,6 +2,7 @@ package com.libraryMenuOperations;
 
 import com.core.Book;
 import com.core.Library;
+import com.core.LibraryListable;
 import com.inputOutput.Input;
 import com.inputOutput.Output;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +25,7 @@ class ListBooksTest {
   void setUp() {
     Book aBook = new Book("Harry Potter", "J.K.Rowling", 2001);
     Book anotherBook = new Book("Outliers", "William Gladwell", 2005);
-    List<Book> bookList = new ArrayList<>();
+    List<LibraryListable> bookList = new ArrayList<>();
     bookList.add(aBook);
     bookList.add(anotherBook);
     library = new Library(bookList);

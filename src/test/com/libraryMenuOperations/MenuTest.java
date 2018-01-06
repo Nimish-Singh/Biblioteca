@@ -2,6 +2,7 @@ package com.libraryMenuOperations;
 
 import com.core.Book;
 import com.core.Library;
+import com.core.LibraryListable;
 import com.inputOutput.Input;
 import com.inputOutput.Output;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,7 @@ class MenuTest {
 
   @BeforeEach
   void setUp() {
-    List<Book> books = new ArrayList<>();
+    List<LibraryListable> books = new ArrayList<>();
     books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
     books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
     books.add(new Book("Outliers", "William Gladwell", 2010));
@@ -33,27 +34,32 @@ class MenuTest {
   }
 
   @Test
-  void expectListBooksOptionToBeExecutedOnChoosingOption1() {
+  void expectListBooksOptionToBeReturnedOnChoosingListBooksOption() {
     assertEquals(ListBooks.class, menu.getOption(LIST_BOOKS_OPTION_NUMBER).getClass());
   }
 
   @Test
-  void expectCheckoutBooksOptionToBeExecutedOnChoosingOption2() {
-    assertEquals(CheckoutBook.class, menu.getOption(CHECKOUT_BOOK_OPTION_NUMBER).getClass());
+  void expectListMoviesOptionToBeReturnedOnChoosingListMoviesOption() {
+    assertEquals(ListMovies.class, menu.getOption(LIST_MOVIES_OPTION_NUMBER).getClass());
   }
 
   @Test
-  void expectReturnBooksOptionToBeExecutedOnChoosingOption3() {
-    assertEquals(ReturnBook.class, menu.getOption(RETURN_BOOK_OPTION_NUMBER).getClass());
+  void expectCheckoutBooksOptionToBeReturnedOnChoosingCheckoutItemOption() {
+    assertEquals(CheckoutItem.class, menu.getOption(CHECKOUT_BOOK_OPTION_NUMBER).getClass());
   }
 
   @Test
-  void expectQuitOptionToBeExecutedOnChoosingOption4() {
+  void expectReturnBooksOptionToBeReturnedOnChoosingReturnItemOption() {
+    assertEquals(ReturnItem.class, menu.getOption(RETURN_BOOK_OPTION_NUMBER).getClass());
+  }
+
+  @Test
+  void expectQuitOptionToBeReturnedOnChoosingQuitOption() {
     assertEquals(Quit.class, menu.getOption(QUIT_OPTION_NUMBER).getClass());
   }
 
   @Test
-  void expectInvalidOptionToBeExecutedOnChoosingAnyOtherOption() {
+  void expectInvalidOptionToBeReturnedOnChoosingAnyOtherOption() {
     assertEquals(InvalidOption.class, menu.getOption("G").getClass());
   }
 }
