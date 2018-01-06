@@ -11,6 +11,7 @@ import java.sql.Statement;
 
 import static com.inputOutput.CSVFileReader.REGEX_FOR_PARSING;
 
+//Represents how to store data into database from csv file
 public class CSVToDatabaseParser {
   private File bookFile;
   private File movieFile;
