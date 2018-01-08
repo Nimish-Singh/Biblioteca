@@ -6,7 +6,7 @@ import com.libraryMenuOperations.LibraryMenuOption;
 import com.libraryMenuOperations.Menu;
 
 //Represents a library management system
-public class Biblioteca {
+class Biblioteca {
   static final String WELCOME_MESSAGE = "Welcome to Biblioteca";
   static final String MENU = "\nPlease select one of the following choices\n" +
           "1.List Books\n" +
@@ -16,7 +16,7 @@ public class Biblioteca {
           "5.Logout\n" +
           "6.Show User Details\n" +
           "0.Quit\n";
-  public static final String ASK_KEY_INPUT_TO_CONTINUE = "\nPress any key to continue";
+  private static final String ASK_KEY_INPUT_TO_CONTINUE = "\nPress any key to continue";
 
   private final Menu menu;
   private final Output output;

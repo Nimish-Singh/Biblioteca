@@ -13,15 +13,15 @@ import static com.libraryMenuOperations.Menu.QUIT_OPTION_NUMBER;
 
 //Represents the option for listing all the available books in the library
 public class ListBooks implements LibraryMenuOption {
-  public static final String BOOK_LIST_HEADER = String.format("%-170s%-50s%-40s\n", "Book", "Author", "Year published");
+  static final String BOOK_LIST_HEADER = String.format("%-170s%-50s%-40s\n", "Book", "Author", "Year published");
   public static final Integer PAGE_LIMIT = 20;
-  public static final String PAGINATION_CONTINUATION_PROMPT_MESSAGE = "Press any key to continue. Press 0 to get back to main menu";
+  static final String PAGINATION_CONTINUATION_PROMPT_MESSAGE = "Press any key to continue. Press 0 to get back to main menu";
 
   private final Library library;
   private final Output output;
   private final Input input;
 
-  public ListBooks(Library library, Output output, Input input) {
+  ListBooks(Library library, Output output, Input input) {
     this.library = library;
     this.output = output;
     this.input = input;

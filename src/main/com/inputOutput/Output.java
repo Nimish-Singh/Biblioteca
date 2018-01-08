@@ -2,7 +2,7 @@ package com.inputOutput;
 
 //Understands how to render data to an output device
 public interface Output {
-  Output CONSOLE = (message) -> System.out.println(message);
+  Output CONSOLE = System.out::println;
 
   void print(String message);
 }

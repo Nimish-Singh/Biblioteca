@@ -9,12 +9,12 @@ import java.util.Map;
 
 //Represents a mapping of different library options
 public class Menu {
-  public static final String LIST_BOOKS_OPTION_NUMBER = "1";
-  public static final String LIST_MOVIES_OPTION_NUMBER = "2";
-  public static final String CHECKOUT_ITEM_OPTION_NUMBER = "3";
-  public static final String RETURN_ITEM_OPTION_NUMBER = "4";
-  public static final String LOGOUT = "5";
-  public static final String SHOW_USER_DETAILS = "6";
+  static final String LIST_BOOKS_OPTION_NUMBER = "1";
+  static final String LIST_MOVIES_OPTION_NUMBER = "2";
+  static final String CHECKOUT_ITEM_OPTION_NUMBER = "3";
+  static final String RETURN_ITEM_OPTION_NUMBER = "4";
+  static final String LOGOUT = "5";
+  static final String SHOW_USER_DETAILS = "6";
   public static final String QUIT_OPTION_NUMBER = "0";
   private final Map<String, LibraryMenuOption> commands;
   private final LibraryMenuOption invalidOption;

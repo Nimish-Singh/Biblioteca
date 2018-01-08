@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class Logout implements LibraryMenuOption {
   private final Library library;
 
-  public Logout(Library library) {
+  Logout(Library library) {
     this.library = library;
   }
 

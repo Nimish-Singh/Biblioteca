@@ -15,13 +15,13 @@ import static com.libraryMenuOperations.Menu.QUIT_OPTION_NUMBER;
 
 //Represents the option for listing all the available books in the library
 public class ListMovies implements LibraryMenuOption {
-  public static final String MOVIE_LIST_HEADER = String.format("%-70s%-40s%-30s%-10s\n", "Movie", "Director", "Year", "Rating");
+  static final String MOVIE_LIST_HEADER = String.format("%-70s%-40s%-30s%-10s\n", "Movie", "Director", "Year", "Rating");
 
   private final Library library;
   private final Output output;
   private final Input input;
 
-  public ListMovies(Library library, Output output, Input input) {
+  ListMovies(Library library, Output output, Input input) {
     this.library = library;
     this.output = output;
     this.input = input;

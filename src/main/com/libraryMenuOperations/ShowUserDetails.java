@@ -5,11 +5,11 @@ import com.inputOutput.Output;
 
 //Represents the act of displaying user details
 public class ShowUserDetails implements LibraryMenuOption {
-  public static final String USER_DETAILS_HEADER = String.format("%-30s%-30s%-30s", "Name", "Email Address", "Phone Number");
+  static final String USER_DETAILS_HEADER = String.format("%-30s%-30s%-30s", "Name", "Email Address", "Phone Number");
   private Output output;
   private Library library;
 
-  public ShowUserDetails(Library library, Output output) {
+  ShowUserDetails(Library library, Output output) {
     this.library = library;
     this.output = output;
   }
