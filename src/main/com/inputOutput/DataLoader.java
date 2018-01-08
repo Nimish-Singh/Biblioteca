@@ -1,8 +1,8 @@
 package com.inputOutput;
 
-import com.core.Book;
-import com.core.LibraryListable;
-import com.core.Movie;
+import com.libraryItems.Book;
+import com.libraryItems.LibraryListable;
+import com.libraryItems.Movie;
 
 import java.sql.*;
 import java.util.ArrayList;

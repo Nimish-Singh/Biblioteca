@@ -1,4 +1,4 @@
-package com.core;
+package com.libraryItems;
 
 //Represents a collection of pages held together
 public class Book implements LibraryListable {

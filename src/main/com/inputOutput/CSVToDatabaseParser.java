@@ -9,8 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static com.inputOutput.CSVFileReader.REGEX_FOR_PARSING;
-
+//import static com.inputOutput.CSVFileReader.REGEX_FOR_PARSING;
+/*
 //Represents how to store data into database from csv file
 public class CSVToDatabaseParser {
   private File bookFile;
@@ -64,4 +64,4 @@ public class CSVToDatabaseParser {
       e.printStackTrace();
     }
   }
-}
+}*/

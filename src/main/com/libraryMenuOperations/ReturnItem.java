@@ -23,8 +23,8 @@ public class ReturnItem implements LibraryMenuOption {
   @Override
   public void execute() {
     output.print(ENTER_NAME_OF_THE_ITEM_TO_BE_RETURNED);
-    String bookName = input.read();
-    if (!library.returnItem(bookName).isPresent()) {
+    String itemName = input.read();
+    if (!library.returnItem(itemName).isPresent()) {
       output.print(SUCCESSFUL_ITEM_RETURN_MESSAGE);
       return;
     }

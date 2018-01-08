@@ -1,4 +1,4 @@
-package com.core;
+package com.libraryItems;
 
 public class Movie implements LibraryListable {
   private final String title;

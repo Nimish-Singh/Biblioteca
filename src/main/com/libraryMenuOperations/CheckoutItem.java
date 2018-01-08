@@ -23,8 +23,8 @@ public class CheckoutItem implements LibraryMenuOption {
   @Override
   public void execute() {
     output.print(ENTER_NAME_OF_ITEM_TO_BE_CHECKED_OUT);
-    String bookName = input.read();
-    if (library.checkOut(bookName).isPresent()) {
+    String itemName = input.read();
+    if (library.checkOut(itemName).isPresent()) {
       output.print(SUCCESSFUL_CHECKOUT_MESSAGE);
       return;
     }

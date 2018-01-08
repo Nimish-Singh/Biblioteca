@@ -13,7 +13,9 @@ public class Biblioteca {
           "2.List Movies\n" +
           "3.Checkout Item\n" +
           "4.Return Item\n" +
-          "0.Quit";
+          "5.Logout\n" +
+          "6.Show User Details\n" +
+          "0.Quit\n";
   public static final String ASK_KEY_INPUT_TO_CONTINUE = "\nPress any key to continue";
 
   private final Menu menu;

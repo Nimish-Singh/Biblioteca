@@ -1,9 +1,11 @@
 package com.core;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import com.customer.User;
+import com.libraryItems.Book;
+import com.libraryItems.LibraryListable;
+import com.libraryItems.Movie;
+
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -14,15 +16,25 @@ import static java.util.stream.Collectors.toMap;
 public class Library {
   private List<LibraryListable> availableItems;
   private List<LibraryListable> checkedOutItems;
+  private User activeUser;
+  private Map<User, Set<LibraryListable>> customerCheckedoutItemsMapping;
 
   public Library(List<LibraryListable> items) {
     this.availableItems = items;
     this.checkedOutItems = new ArrayList<>();
+    this.customerCheckedoutItemsMapping = new HashMap<>();
+  }
+
+  public void changeActiveCustomer(User user){
+      this.activeUser = user;
   }
 
   public Optional<LibraryListable> checkOut(String itemName) {
     Optional<LibraryListable> checkedOutItem = availableItems.stream().filter(item -> item.hasSameName(itemName)).findFirst();
     if (checkedOutItem.isPresent()) {
+      Set<LibraryListable> customerItems = customerCheckedoutItemsMapping.getOrDefault(activeUser, new HashSet<>());
+      customerItems.add(checkedOutItem.get());
+      customerCheckedoutItemsMapping.put(activeUser, customerItems);
       availableItems.remove(checkedOutItem.get());
       checkedOutItems.add(checkedOutItem.get());
     }
@@ -30,6 +42,10 @@ public class Library {
   }
 
   public Optional<String> returnItem(String itemName) {
+    Set<LibraryListable> customerItems = customerCheckedoutItemsMapping.getOrDefault(activeUser, new HashSet<>());
+    if(customerItems.isEmpty()){
+      return Optional.of(itemName);
+    }
     Optional<LibraryListable> returnedItem = checkedOutItems.stream().filter(item -> item.hasSameName(itemName)).findFirst();
     if (returnedItem.isPresent()) {
       checkedOutItems.remove(returnedItem.get());
@@ -39,10 +55,14 @@ public class Library {
     return Optional.of(itemName);
   }
 
+  public String showCurrentCustomerDetails(){
+    return activeUser.tableRepresentationFormatting();
+  }
+
   public Map<Integer, List<LibraryListable>> paginateBooks(int pageSize) {
-    List<LibraryListable> books = new ArrayList<>(availableItems);
-    books.addAll(checkedOutItems);
-    List<LibraryListable> printingBooks = books.stream().filter(book -> book.getClass().equals(Book.class)).collect(Collectors.toList());
+    List<LibraryListable> items = new ArrayList<>(availableItems);
+    items.addAll(checkedOutItems);
+    List<LibraryListable> printingBooks = items.stream().filter(item -> item.getClass().equals(Book.class)).collect(Collectors.toList());
 
     return IntStream.iterate(0, i -> i + pageSize)
             .limit((printingBooks.size() + pageSize - 1) / pageSize)
@@ -51,9 +71,9 @@ public class Library {
   }
 
   public Map<Integer, List<LibraryListable>> paginateMovies(int pageSize) {
-    List<LibraryListable> movies = new ArrayList<>(availableItems);
-    movies.addAll(checkedOutItems);
-    List<LibraryListable> printingMovies = movies.stream().filter(movie -> movie.getClass().equals(Movie.class)).collect(Collectors.toList());
+    List<LibraryListable> items = new ArrayList<>(availableItems);
+    items.addAll(checkedOutItems);
+    List<LibraryListable> printingMovies = items.stream().filter(item -> item.getClass().equals(Movie.class)).collect(Collectors.toList());
 
     return IntStream.iterate(0, i -> i + pageSize)
             .limit((printingMovies.size() + pageSize - 1) / pageSize)

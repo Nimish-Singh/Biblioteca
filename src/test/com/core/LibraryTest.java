@@ -1,5 +1,9 @@
 package com.core;
 
+import com.customer.User;
+import com.libraryItems.Book;
+import com.libraryItems.LibraryListable;
+import com.libraryItems.Movie;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -61,5 +65,23 @@ class LibraryTest {
     Map<Integer, List<LibraryListable>> paginatedMovies = new HashMap<>();
     paginatedMovies.put(0, movies);
     assertEquals(paginatedMovies, library.paginateMovies(PAGE_LIMIT));
+  }
+
+  @Test
+  void expectCurrentUserDetailsToBeReturned() {
+    User currentUser = new User("User1", "user1@user1.com", "1234", "111-1111", "password1");
+    library.changeActiveCustomer(currentUser);
+    assertEquals(library.showCurrentCustomerDetails(), currentUser.tableRepresentationFormatting());
+  }
+
+  @Test
+  void expectCurrentUserToBeChangedToNewUser() {
+    User aUser = new User("User1", "user1@user1.com", "1234", "111-1111", "password1");
+    User anotherUser = new User("User2", "user2@user2.com", "5678", "222-2222", "password2");
+    library.changeActiveCustomer(aUser);
+    assertEquals(library.showCurrentCustomerDetails(), aUser.tableRepresentationFormatting());
+    library.changeActiveCustomer(anotherUser);
+    assertNotEquals(library.showCurrentCustomerDetails(), aUser.tableRepresentationFormatting());
+    assertEquals(library.showCurrentCustomerDetails(), anotherUser.tableRepresentationFormatting());
   }
 }

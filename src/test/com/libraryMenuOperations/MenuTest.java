@@ -1,8 +1,8 @@
 package com.libraryMenuOperations;
 
-import com.core.Book;
+import com.libraryItems.Book;
 import com.core.Library;
-import com.core.LibraryListable;
+import com.libraryItems.LibraryListable;
 import com.inputOutput.Input;
 import com.inputOutput.Output;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,10 +27,10 @@ class MenuTest {
     books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
     books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
     books.add(new Book("Outliers", "William Gladwell", 2010));
-    library = new Library(books);
+    //library = new Library(books);
     output = mock(Output.class);
     input = mock(Input.class);
-    menu = new Menu(library, output, input);
+    //menu = new Menu(library, output, input);
   }
 
   @Test
@@ -45,12 +45,12 @@ class MenuTest {
 
   @Test
   void expectCheckoutBooksOptionToBeReturnedOnChoosingCheckoutItemOption() {
-    assertEquals(CheckoutItem.class, menu.getOption(CHECKOUT_BOOK_OPTION_NUMBER).getClass());
+    assertEquals(CheckoutItem.class, menu.getOption(CHECKOUT_ITEM_OPTION_NUMBER).getClass());
   }
 
   @Test
   void expectReturnBooksOptionToBeReturnedOnChoosingReturnItemOption() {
-    assertEquals(ReturnItem.class, menu.getOption(RETURN_BOOK_OPTION_NUMBER).getClass());
+    assertEquals(ReturnItem.class, menu.getOption(RETURN_ITEM_OPTION_NUMBER).getClass());
   }
 
   @Test
