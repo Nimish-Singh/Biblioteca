@@ -1,9 +1,12 @@
 package com.libraryMenuOperations;
 
 import com.core.Library;
+import com.inputOutput.Output;
 import com.user.UserAuthentication;
 
 import java.sql.SQLException;
+
+import static com.inputOutput.DataLoader.DATABASE_CONNECTION_ERROR;
 
 //Represents the act of ending the current user's session
 public class Logout implements LibraryMenuOption {
@@ -17,8 +20,8 @@ public class Logout implements LibraryMenuOption {
   public void execute() {
     try {
       library.changeActiveUser(UserAuthentication.userAuthentication.loginUser());
-    } catch (SQLException e) {
-      System.out.println("Could not connect to the database");
+    } catch (SQLException sqlException) {
+      Output.CONSOLE.print(DATABASE_CONNECTION_ERROR);
     }
   }
 }

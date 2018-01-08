@@ -11,6 +11,13 @@ import java.util.List;
 
 //Represents the data being loaded into the library
 public class DataLoader {
+  public static final String DATABASE_CONNECTION_ERROR = "Could not connect to the specified database";
+  private static final String MOVIE_DATABASE_CONNECTION_ERROR = "Could not connect to the movie table";
+  private static final String BOOK_DATABASE_CONNECTION_ERROR = "Could not connect to the book table";
+  private static final String DATABASE_PATH = "jdbc:postgresql://127.0.0.1:5432/";
+  public static final String DBMS_USERNAME = "nimishs";
+  public static final String DBMS_PASSWORD = "";
+
   private Connection connection;
   private Statement statement;
   private List<LibraryListable> items;
@@ -23,13 +30,13 @@ public class DataLoader {
 
   public List<LibraryListable> dataFromDatabase(String databaseName) {
     try {
-      connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/" + databaseName, "nimishs", "");
+      connection = DriverManager.getConnection(DATABASE_PATH + databaseName, DBMS_USERNAME, DBMS_PASSWORD);
       statement = connection.createStatement();
       items = readBookData();
       items.addAll(readMovieData());
       statement.close();
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (SQLException sqlException) {
+      Output.CONSOLE.print(DATABASE_CONNECTION_ERROR);
     }
     return items;
   }
@@ -41,8 +48,8 @@ public class DataLoader {
       resultSet = statement.executeQuery("select * from book;");
       books = createBookListFromData(resultSet, books);
       resultSet.close();
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (SQLException sqlException) {
+      Output.CONSOLE.print(BOOK_DATABASE_CONNECTION_ERROR);
     }
     Collections.sort(books);
     return books;
@@ -53,8 +60,8 @@ public class DataLoader {
       while (resultSet.next()) {
         books.add(new Book(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3)));
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (SQLException sqlException) {
+      Output.CONSOLE.print(BOOK_DATABASE_CONNECTION_ERROR);
     }
     return books;
   }
@@ -66,8 +73,8 @@ public class DataLoader {
       resultSet = statement.executeQuery("select * from movie;");
       movies = createMovieListFromData(resultSet, movies);
       resultSet.close();
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (SQLException sqlException) {
+      Output.CONSOLE.print(MOVIE_DATABASE_CONNECTION_ERROR);
     }
     Collections.sort(movies);
     return movies;
@@ -78,8 +85,8 @@ public class DataLoader {
       while (resultSet.next()) {
         movies.add(new Movie(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4)));
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (SQLException sqlException) {
+      Output.CONSOLE.print(MOVIE_DATABASE_CONNECTION_ERROR);
     }
     return movies;
   }
