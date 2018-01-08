@@ -1,6 +1,5 @@
 package com.libraryItems;
 
-import com.libraryItems.Book;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

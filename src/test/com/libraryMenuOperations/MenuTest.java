@@ -1,10 +1,10 @@
 package com.libraryMenuOperations;
 
-import com.libraryItems.Book;
 import com.core.Library;
-import com.libraryItems.LibraryListable;
 import com.inputOutput.Input;
 import com.inputOutput.Output;
+import com.libraryItems.Book;
+import com.libraryItems.LibraryListable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ class MenuTest {
     //library = new Library(books);
     output = mock(Output.class);
     input = mock(Input.class);
-    //menu = new Menu(library, output, input);
+    menu = new Menu(library, output, input);
   }
 
   @Test
@@ -51,6 +51,16 @@ class MenuTest {
   @Test
   void expectReturnBooksOptionToBeReturnedOnChoosingReturnItemOption() {
     assertEquals(ReturnItem.class, menu.getOption(RETURN_ITEM_OPTION_NUMBER).getClass());
+  }
+
+  @Test
+  void expectShowUserDetailsOptionToBeReturnedOnChoosingShowUserDetailsOption() {
+    assertEquals(ShowUserDetails.class, menu.getOption(SHOW_USER_DETAILS).getClass());
+  }
+
+  @Test
+  void expectLogoutOptionToBeReturnedOnChoosingLogoutOption() {
+    assertEquals(Logout.class, menu.getOption(LOGOUT).getClass());
   }
 
   @Test

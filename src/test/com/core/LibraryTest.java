@@ -1,9 +1,9 @@
 package com.core;
 
-import com.customer.User;
 import com.libraryItems.Book;
 import com.libraryItems.LibraryListable;
 import com.libraryItems.Movie;
+import com.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +59,7 @@ class LibraryTest {
   }
 
   @Test
-  void expectmMoviesToBePaginated() {
+  void expectMoviesToBePaginated() {
     List<LibraryListable> movies = new ArrayList<>(Arrays.asList(new Movie("Se7en", "David Fincher", 1995, "8.6"),
             new Movie("Toy Story", "John Lasseter", 1995, "8.3")));
     Map<Integer, List<LibraryListable>> paginatedMovies = new HashMap<>();
@@ -70,7 +70,7 @@ class LibraryTest {
   @Test
   void expectCurrentUserDetailsToBeReturned() {
     User currentUser = new User("User1", "user1@user1.com", "1234", "111-1111", "password1");
-    library.changeActiveCustomer(currentUser);
+    library.changeActiveUser(currentUser);
     assertEquals(library.showCurrentCustomerDetails(), currentUser.tableRepresentationFormatting());
   }
 
@@ -78,10 +78,20 @@ class LibraryTest {
   void expectCurrentUserToBeChangedToNewUser() {
     User aUser = new User("User1", "user1@user1.com", "1234", "111-1111", "password1");
     User anotherUser = new User("User2", "user2@user2.com", "5678", "222-2222", "password2");
-    library.changeActiveCustomer(aUser);
+    library.changeActiveUser(aUser);
     assertEquals(library.showCurrentCustomerDetails(), aUser.tableRepresentationFormatting());
-    library.changeActiveCustomer(anotherUser);
+    library.changeActiveUser(anotherUser);
     assertNotEquals(library.showCurrentCustomerDetails(), aUser.tableRepresentationFormatting());
     assertEquals(library.showCurrentCustomerDetails(), anotherUser.tableRepresentationFormatting());
+  }
+
+  @Test
+  void expectAnotherUserToBeUnableToReturnSomeOtherUserItem() {
+    User aUser = new User("User1", "user1@user1.com", "1234", "111-1111", "password1");
+    User anotherUser = new User("User2", "user2@user2.com", "5678", "222-2222", "password2");
+    library.changeActiveUser(aUser);
+    library.checkOut("Harry Potter");
+    library.changeActiveUser(anotherUser);
+    assertTrue(library.returnItem("Harry Potter").isPresent());
   }
 }

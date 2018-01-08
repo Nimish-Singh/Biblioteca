@@ -1,10 +1,11 @@
 package com.libraryMenuOperations;
 
 import com.core.Library;
-import com.customer.UserAuthentication;
+import com.user.UserAuthentication;
 
 import java.sql.SQLException;
 
+//Represents the act of ending the current user's session
 public class Logout implements LibraryMenuOption {
   private final Library library;
 
@@ -15,7 +16,7 @@ public class Logout implements LibraryMenuOption {
   @Override
   public void execute() {
     try {
-      library.changeActiveCustomer(UserAuthentication.userAuthentication.loginUser());
+      library.changeActiveUser(UserAuthentication.userAuthentication.loginUser());
     } catch (SQLException e) {
       System.out.println("Could not connect to the database");
     }

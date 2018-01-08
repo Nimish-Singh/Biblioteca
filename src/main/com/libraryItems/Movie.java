@@ -1,5 +1,6 @@
 package com.libraryItems;
 
+//Represents a cinema film
 public class Movie implements LibraryListable {
   private final String title;
   private final String director;

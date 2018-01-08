@@ -1,4 +1,4 @@
-package com.customer;
+package com.user;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

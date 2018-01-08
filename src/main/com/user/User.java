@@ -1,4 +1,4 @@
-package com.customer;
+package com.user;
 
 //Represents a person who can borrow items from a library
 public class User {

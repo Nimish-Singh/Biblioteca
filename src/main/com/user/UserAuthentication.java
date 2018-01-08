@@ -1,4 +1,4 @@
-package com.customer;
+package com.user;
 
 import com.inputOutput.Input;
 import com.inputOutput.Output;
@@ -6,7 +6,7 @@ import com.inputOutput.Output;
 import java.sql.*;
 import java.util.Optional;
 
-//Represents the process of logging in a customer into the library
+//Represents the process of logging in a user into the library
 public class UserAuthentication {
   private static final String LOGIN_MENU = "\nPlease select one of the following choices\n" +
           "1.Login\n" +

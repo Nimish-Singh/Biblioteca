@@ -14,7 +14,7 @@ public class Menu {
   public static final String CHECKOUT_ITEM_OPTION_NUMBER = "3";
   public static final String RETURN_ITEM_OPTION_NUMBER = "4";
   public static final String LOGOUT = "5";
-  public static final String SHOW_CUSTOMER_DETAILS = "6";
+  public static final String SHOW_USER_DETAILS = "6";
   public static final String QUIT_OPTION_NUMBER = "0";
   private final Map<String, LibraryMenuOption> commands;
   private final LibraryMenuOption invalidOption;
@@ -28,7 +28,7 @@ public class Menu {
     commands.put(LIST_MOVIES_OPTION_NUMBER, new ListMovies(library, output, input));
     commands.put(CHECKOUT_ITEM_OPTION_NUMBER, new CheckoutItem(library, output, input));
     commands.put(RETURN_ITEM_OPTION_NUMBER, new ReturnItem(library, output, input));
-    commands.put(SHOW_CUSTOMER_DETAILS, new ListCustomerDetails(library, output));
+    commands.put(SHOW_USER_DETAILS, new ShowUserDetails(library, output));
     commands.put(LOGOUT, new Logout(library));
     commands.put(QUIT_OPTION_NUMBER, quit);
   }

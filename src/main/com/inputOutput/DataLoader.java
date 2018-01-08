@@ -15,15 +15,15 @@ public class DataLoader {
   private Statement statement;
   private List<LibraryListable> items;
 
-  public DataLoader(){
+  public DataLoader() {
     connection = null;
     statement = null;
     items = new ArrayList<>();
   }
 
-  public List<LibraryListable> dataFromDatabase(){
+  public List<LibraryListable> dataFromDatabase(String databaseName) {
     try {
-      connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/pathashala", "nimishs", "");
+      connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/" + databaseName, "nimishs", "");
       statement = connection.createStatement();
       items = readBookData();
       items.addAll(readMovieData());
@@ -50,8 +50,8 @@ public class DataLoader {
 
   private List<LibraryListable> createBookListFromData(ResultSet resultSet, List<LibraryListable> books) {
     try {
-      while(resultSet.next()){
-        books.add(new Book(resultSet.getString(1), resultSet.getString(2),  resultSet.getInt(3)));
+      while (resultSet.next()) {
+        books.add(new Book(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3)));
       }
     } catch (SQLException e) {
       e.printStackTrace();
@@ -75,8 +75,8 @@ public class DataLoader {
 
   private List<LibraryListable> createMovieListFromData(ResultSet resultSet, List<LibraryListable> movies) {
     try {
-      while(resultSet.next()){
-        movies.add(new Movie(resultSet.getString(1), resultSet.getString(2),  resultSet.getInt(3), resultSet.getString(4)));
+      while (resultSet.next()) {
+        movies.add(new Movie(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4)));
       }
     } catch (SQLException e) {
       e.printStackTrace();

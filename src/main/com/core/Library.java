@@ -1,9 +1,9 @@
 package com.core;
 
-import com.customer.User;
 import com.libraryItems.Book;
 import com.libraryItems.LibraryListable;
 import com.libraryItems.Movie;
+import com.user.User;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,8 +25,8 @@ public class Library {
     this.customerCheckedoutItemsMapping = new HashMap<>();
   }
 
-  public void changeActiveCustomer(User user){
-      this.activeUser = user;
+  public void changeActiveUser(User user) {
+    this.activeUser = user;
   }
 
   public Optional<LibraryListable> checkOut(String itemName) {
@@ -43,7 +43,7 @@ public class Library {
 
   public Optional<String> returnItem(String itemName) {
     Set<LibraryListable> customerItems = customerCheckedoutItemsMapping.getOrDefault(activeUser, new HashSet<>());
-    if(customerItems.isEmpty()){
+    if (customerItems.isEmpty()) {
       return Optional.of(itemName);
     }
     Optional<LibraryListable> returnedItem = checkedOutItems.stream().filter(item -> item.hasSameName(itemName)).findFirst();
@@ -55,7 +55,7 @@ public class Library {
     return Optional.of(itemName);
   }
 
-  public String showCurrentCustomerDetails(){
+  public String showCurrentCustomerDetails() {
     return activeUser.tableRepresentationFormatting();
   }
 
