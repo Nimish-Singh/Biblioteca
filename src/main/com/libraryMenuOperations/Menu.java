@@ -9,12 +9,13 @@ import java.util.Map;
 
 //Represents a mapping of different library options
 public class Menu {
-  public static final String LIST_BOOKS_OPTION_NUMBER = "1";
-  public static final String LIST_MOVIES_OPTION_NUMBER = "2";
-  public static final String CHECKOUT_ITEM_OPTION_NUMBER = "3";
-  public static final String RETURN_ITEM_OPTION_NUMBER = "4";
-  public static final String LOGOUT = "5";
-  public static final String SHOW_USER_DETAILS = "6";
+  static final String LIST_BOOKS_OPTION_NUMBER = "1";
+  static final String LIST_MOVIES_OPTION_NUMBER = "2";
+  static final String CHECKOUT_ITEM_OPTION_NUMBER = "3";
+  static final String RETURN_ITEM_OPTION_NUMBER = "4";
+  static final String SHOW_USER_DETAILS = "5";
+  static final String LIST_BORROWED_ITEMS_OPTION_NUMBER = "6";
+  static final String LOGOUT = "7";
   public static final String QUIT_OPTION_NUMBER = "0";
   private final Map<String, LibraryMenuOption> commands;
   private final LibraryMenuOption invalidOption;
@@ -29,6 +30,7 @@ public class Menu {
     commands.put(CHECKOUT_ITEM_OPTION_NUMBER, new CheckoutItem(library, output, input));
     commands.put(RETURN_ITEM_OPTION_NUMBER, new ReturnItem(library, output, input));
     commands.put(SHOW_USER_DETAILS, new ShowUserDetails(library, output));
+    commands.put(LIST_BORROWED_ITEMS_OPTION_NUMBER, new ListBorrowedItems(library, output));
     commands.put(LOGOUT, new Logout(library));
     commands.put(QUIT_OPTION_NUMBER, quit);
   }

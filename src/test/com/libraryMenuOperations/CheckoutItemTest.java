@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static com.libraryMenuOperations.CheckoutItem.*;
@@ -20,18 +20,13 @@ class CheckoutItemTest {
   private Input input;
   private Output output;
   private CheckoutItem checkoutItem;
-  private List<LibraryListable> books;
-  private List<LibraryListable> movies;
-  private List<LibraryListable> items;
-  private Library library;
 
   @BeforeEach
   void setUp() {
-    books = new ArrayList<>(Arrays.asList(new Book("Harry Potter", "J.K.Rowling", 2001)));
-    movies = new ArrayList<>(Arrays.asList(new Movie("Toy Story", "John Lasseter", 1995, "8.3")));
+    List<LibraryListable> books = new ArrayList<>(Collections.singletonList(new Book("Harry Potter", "J.K.Rowling", 2001)));
+    List<LibraryListable> movies = new ArrayList<>(Collections.singletonList(new Movie("Toy Story", "John Lasseter", 1995, "8.3")));
     books.addAll(movies);
-    items = books;
-    library = new Library(items);
+    Library library = new Library(books);
     input = mock(Input.class);
     output = mock(Output.class);
     checkoutItem = new CheckoutItem(library, output, input);

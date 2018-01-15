@@ -16,10 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
 class MenuTest {
-  private Output output;
-  private Input input;
   private Menu menu;
-  private Library library;
 
   @BeforeEach
   void setUp() {
@@ -27,9 +24,9 @@ class MenuTest {
     books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
     books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
     books.add(new Book("Outliers", "William Gladwell", 2010));
-    //library = new Library(books);
-    output = mock(Output.class);
-    input = mock(Input.class);
+    Library library = new Library(books);
+    Output output = mock(Output.class);
+    Input input = mock(Input.class);
     menu = new Menu(library, output, input);
   }
 
@@ -56,6 +53,11 @@ class MenuTest {
   @Test
   void expectShowUserDetailsOptionToBeReturnedOnChoosingShowUserDetailsOption() {
     assertEquals(ShowUserDetails.class, menu.getOption(SHOW_USER_DETAILS).getClass());
+  }
+
+  @Test
+  void expectBorrowedItemsOptionToBeReturnedOnChoosingListBorrowedItemsOption() {
+    assertEquals(ListBorrowedItems.class, menu.getOption(LIST_BORROWED_ITEMS_OPTION_NUMBER).getClass());
   }
 
   @Test

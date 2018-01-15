@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static com.core.Library.*;
 import static com.libraryMenuOperations.ListBooks.PAGE_LIMIT;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -93,5 +94,21 @@ class LibraryTest {
     library.checkOut("Harry Potter");
     library.changeActiveUser(anotherUser);
     assertTrue(library.returnItem("Harry Potter").isPresent());
+  }
+
+  @Test
+  void expectUserToSeeNotAuthorisedToSeeAllDetailsMessageWhenUserIsNotLibrarian() {
+    User aUser = new User("User1", "user1@user1.com", "1234", "111-1111", "password1");
+    library.changeActiveUser(aUser);
+    assertEquals(UNAUTHORISED_TO_VIEW_ALL_DETAILS_MESSAGE, library.listBorrowedItems());
+  }
+
+  @Test
+  void expectLibrarianToSeeAllBorrowedItemsList() {
+    User aUser = new User("User1", "user1@user1.com", "1234", "111-1111", "password1");
+    library.changeActiveUser(aUser);
+    library.checkOut("Harry Potter");
+    library.changeActiveUser(User.librarian);
+    assertEquals(String.format("%-20s%s%-40s%s%s", "111-1111", BORROWER_AND_ITEM_SEPARATOR, "Harry Potter", ITEM_SEPARATOR, LINE_DELIMITER), library.listBorrowedItems());
   }
 }

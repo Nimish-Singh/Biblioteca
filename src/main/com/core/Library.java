@@ -14,6 +14,10 @@ import static java.util.stream.Collectors.toMap;
 
 //Represents a place where books and movies can be borrowed from
 public class Library {
+  static final String UNAUTHORISED_TO_VIEW_ALL_DETAILS_MESSAGE = "You are not authorised to view these details";
+  static final String BORROWER_AND_ITEM_SEPARATOR = "-> ";
+  static final String ITEM_SEPARATOR = ", ";
+  static final String LINE_DELIMITER = "\n";
   private List<LibraryListable> availableItems;
   private List<LibraryListable> checkedOutItems;
   private User activeUser;
@@ -57,6 +61,19 @@ public class Library {
 
   public String showCurrentCustomerDetails() {
     return activeUser.tableRepresentationFormatting();
+  }
+
+  public String listBorrowedItems() {
+    if (!this.activeUser.equals(User.librarian)) {
+      return UNAUTHORISED_TO_VIEW_ALL_DETAILS_MESSAGE;
+    }
+    StringBuilder borrowedItems = new StringBuilder();
+    for (User borrower : customerCheckedoutItemsMapping.keySet()) {
+      borrowedItems.append(borrower.rowRepresentationOfUserLibraryNumber()).append(BORROWER_AND_ITEM_SEPARATOR);
+      customerCheckedoutItemsMapping.get(borrower).forEach(item -> borrowedItems.append(item.rowRepresentationOfItemName()).append(ITEM_SEPARATOR));
+      borrowedItems.append(LINE_DELIMITER);
+    }
+    return borrowedItems.toString();
   }
 
   public Map<Integer, List<LibraryListable>> paginateBooks(int pageSize) {

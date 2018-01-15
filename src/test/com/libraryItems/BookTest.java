@@ -18,6 +18,12 @@ class BookTest {
   }
 
   @Test
+  void expectBookNameToBePrintedCorrectly() {
+    Book book = new Book("Outliers", "William Gladwell", 2010);
+    assertEquals(String.format("%-40s", "Outliers"), book.rowRepresentationOfItemName());
+  }
+
+  @Test
   void expectBookWithAGivenNameToBeFound() {
     Book book = new Book("Outliers", "William Gladwell", 2010);
     assertTrue(book.hasSameName("outliers"));

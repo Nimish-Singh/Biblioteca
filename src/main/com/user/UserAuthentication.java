@@ -8,15 +8,12 @@ import java.util.Optional;
 
 //Represents the process of logging in a user into the library
 public class UserAuthentication {
-  private static final String LOGIN_MENU = "\nPlease select one of the following choices\n" +
-          "1.Login\n" +
-          "0.Quit\n";
   private Output output;
   private Input input;
 
   public static final UserAuthentication userAuthentication = new UserAuthentication(Output.CONSOLE, Input.CONSOLE);
 
-  public UserAuthentication(Output output, Input input) {
+  UserAuthentication(Output output, Input input) {
     this.output = output;
     this.input = input;
   }
@@ -33,8 +30,7 @@ public class UserAuthentication {
         return activeCustomer.get();
       }
       output.print("The username and password don't match");
-    } while (!activeCustomer.isPresent());
-    return activeCustomer.get();
+    } while (true);
   }
 
   private Optional<User> checkCustomerInDatabase(String libraryNumber, String password) throws SQLException {

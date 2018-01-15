@@ -8,6 +8,8 @@ public class User {
   private final String libraryNumber;
   private final String password;
 
+  public static final User librarian = new User("Librarian", "librarian@abc.com", "12345", "000-0000", "librarian");
+
   public User(String name, String emailAddress, String phoneNumber, String libraryNumber, String password) {
     this.name = name;
     this.emailAddress = emailAddress;
@@ -18,6 +20,10 @@ public class User {
 
   public String tableRepresentationFormatting() {
     return String.format("%-30s%-30s%-30s", name, emailAddress, phoneNumber);
+  }
+
+  public String rowRepresentationOfUserLibraryNumber() {
+    return String.format("%-20s", libraryNumber);
   }
 
   @Override

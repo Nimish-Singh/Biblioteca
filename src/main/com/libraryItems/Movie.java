@@ -25,6 +25,11 @@ public class Movie implements LibraryListable {
   }
 
   @Override
+  public String rowRepresentationOfItemName() {
+    return String.format("%-40s", title);
+  }
+
+  @Override
   public int compareTo(LibraryListable other) {
     Movie otherMovie = (Movie) other;
     return this.title.compareToIgnoreCase(otherMovie.title);

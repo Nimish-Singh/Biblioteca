@@ -16,7 +16,6 @@ import static com.libraryMenuOperations.Menu.QUIT_OPTION_NUMBER;
 import static org.mockito.Mockito.*;
 
 class ListBooksTest {
-  private Library library;
   private Output output;
   private ListBooks listBooks;
   private Input input;
@@ -28,7 +27,7 @@ class ListBooksTest {
     List<LibraryListable> bookList = new ArrayList<>();
     bookList.add(aBook);
     bookList.add(anotherBook);
-    library = new Library(bookList);
+    Library library = new Library(bookList);
     output = mock(Output.class);
     input = mock(Input.class);
     listBooks = new ListBooks(library, output, input);

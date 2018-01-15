@@ -7,4 +7,6 @@ public interface LibraryListable extends Comparable<LibraryListable> {
   String tableRepresentationFormatting();
 
   int compareTo(LibraryListable other);
+
+  String rowRepresentationOfItemName();
 }

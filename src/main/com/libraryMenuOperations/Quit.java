@@ -4,7 +4,7 @@ import com.inputOutput.Output;
 
 //Represents the option of exiting the application
 public class Quit implements LibraryMenuOption {
-  public static final String GOODBYE_MESSAGE = "Goodbye! See you again!";
+  static final String GOODBYE_MESSAGE = "Goodbye! See you again!";
 
   private final Output output;
 

@@ -9,7 +9,8 @@ import java.sql.SQLException;
 public class Logout implements LibraryMenuOption {
   private final Library library;
 
-  public Logout(Library library) {
+
+  Logout(Library library) {
     this.library = library;
   }
 
@@ -18,7 +19,7 @@ public class Logout implements LibraryMenuOption {
     try {
       library.changeActiveUser(UserAuthentication.userAuthentication.loginUser());
     } catch (SQLException e) {
-      System.out.println("Could not connect to the database");
+      e.printStackTrace();
     }
   }
 }

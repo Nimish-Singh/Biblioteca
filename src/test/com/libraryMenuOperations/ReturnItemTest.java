@@ -20,7 +20,6 @@ class ReturnItemTest {
   private Output output;
   private CheckoutItem checkoutItem;
   private ReturnItem returnItem;
-  private Library library;
 
   @BeforeEach
   void setUp() {
@@ -31,7 +30,7 @@ class ReturnItemTest {
     items.add(new Movie("Toy Story", "John Lasseter", 1995, "8.3"));
     items.add(new Movie("X-Men", "Bryan Singer", 2000, "7.4"));
     items.add(new Movie("The Departed", "Martin Scorsese", 2006, "8.5"));
-    library = new Library(items);
+    Library library = new Library(items);
     input = mock(Input.class);
     output = mock(Output.class);
     checkoutItem = new CheckoutItem(library, output, input);

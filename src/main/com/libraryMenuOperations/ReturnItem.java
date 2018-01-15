@@ -6,15 +6,15 @@ import com.inputOutput.Output;
 
 //Represents the option for returning a book to the library
 public class ReturnItem implements LibraryMenuOption {
-  public static final String ENTER_NAME_OF_THE_ITEM_TO_BE_RETURNED = "Enter name of the item to be returned";
-  public static final String SUCCESSFUL_ITEM_RETURN_MESSAGE = "Thank you for returning the item.";
-  public static final String NOT_A_VALID_ITEM_TO_RETURN_MESSAGE = "That is not a valid item to return";
+  static final String ENTER_NAME_OF_THE_ITEM_TO_BE_RETURNED = "Enter name of the item to be returned";
+  static final String SUCCESSFUL_ITEM_RETURN_MESSAGE = "Thank you for returning the item.";
+  static final String NOT_A_VALID_ITEM_TO_RETURN_MESSAGE = "That is not a valid item to return";
 
   private final Library library;
   private final Output output;
   private final Input input;
 
-  public ReturnItem(Library library, Output output, Input input) {
+  ReturnItem(Library library, Output output, Input input) {
     this.library = library;
     this.output = output;
     this.input = input;

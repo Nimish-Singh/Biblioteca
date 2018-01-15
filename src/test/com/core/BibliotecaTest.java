@@ -17,11 +17,9 @@ import static com.libraryMenuOperations.Menu.QUIT_OPTION_NUMBER;
 import static org.mockito.Mockito.*;
 
 class BibliotecaTest {
-  private Library library;
   private Input input;
   private Output output;
   private Biblioteca biblioteca;
-  private Menu menu;
 
   @BeforeEach
   void setUp() {
@@ -29,10 +27,10 @@ class BibliotecaTest {
     books.add(new Book("Harry Potter", "J.K.Rowling", 2001));
     books.add(new Book("Steve Jobs", "Walter Isaacson", 2007));
     books.add(new Book("Outliers", "William Gladwell", 2010));
-    library = new Library(books);
+    Library library = new Library(books);
     input = mock(Input.class);
     output = mock(Output.class);
-    menu = new Menu(library, output, input);
+    Menu menu = new Menu(library, output, input);
     biblioteca = new Biblioteca(menu, output, input);
   }
 

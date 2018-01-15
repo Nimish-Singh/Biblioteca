@@ -18,6 +18,12 @@ class MovieTest {
   }
 
   @Test
+  void expectMovieTitleToBePrintedCorrectly() {
+    Movie movie = new Movie("Toy Story", "John Lasseter", 1995, "8.3");
+    assertEquals(String.format("%-40s", "Toy Story"), movie.rowRepresentationOfItemName());
+  }
+
+  @Test
   void expectMovieWithAGivenNameToBeFound() {
     Movie movie = new Movie("Toy Story", "John Lasseter", 1995, "8.3");
     assertTrue(movie.hasSameName("toy story"));
